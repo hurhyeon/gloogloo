@@ -1,59 +1,88 @@
 <template>
+  <div class="MainmainB" :class="(mode === 'dark') ? 'dark' : 'light'">
     <div :class="$style.mainmainB" >
       <div :class="$style.mainmainBChild"  />
       <div :class="$style.mainmainBItem"  />
       <div :class="$style.mainmainBInner" />
-      <img
-        :class="$style.blackAndWhiteCollection11"
-        alt=""
-        src="/black-and-white-collection-11.svg"
-      />
-      <b :class="$style.yUpik">Y-upik</b> 
+      <img :class="$style.blackAndWhiteCollection11" alt="" src="/black-and-white-collection-11.svg" @click="onMainClick"/>
+      <b :class="$style.yUpik" @click="onMainClick" >Y-upik</b> 
       <div :class="$style.chatModelWrapper">
-        <b :class="$style.chatModel">Chat Model</b>
+        <div :class="$style.chatModel" @click ="onMainClick"> Chat Model </div>
       </div>
-      <div :class="$style.apiKeyWrapper">
-        <b :class="$style.apiKey">API Key </b>
+      <div :class="$style.apiKeyWrapper" @click ="onApiClick">
+        <b :class="$style.apiKey" @click ="onApiClick">API Key </b>
       </div>
       <div :class="$style.rectangleDiv" />
       <div :class="$style.mainmainBChild1" />
       <img :class="$style.icon" alt="" src="/1.svg" />
       <b :class="$style.chatModel1">Chat Model</b>
       <div :class="$style.mainmainBChild2" />
-      <div :class="$style.mainmainBChild3" />
-      <div :class="$style.mainmainBChild4" />
+      <div :class="$style.mainmainBChild3" @click ="onSecurityClick" />
+      <div :class="$style.mainmainBChild4" @click ="onPrivircyClick"/>
       <div :class="$style.mainmainBChild5" />
       <div :class="$style.mainmainBChild6" />
       <div :class="$style.mainmainBChild7" />
       <div :class="$style.mainmainBChild8" />
-      <div :class="$style.securityAssistant" @click="onFrameContainerClick">Security Assistant</div>
-      <b :class="$style.b">
-        <p :class="$style.p" @click="onFrameContainerClick">챗봇이다.</p>
-      </b>
-      <b :class="$style.privacyDetector">Privacy Detector</b>
-      <b :class="$style.b1">디텍터이다.</b>
+      <b :class="$style.securityAssistant" @click="onSecurityClick">Security Assistant</b>
+      <b :class="$style.p" @click="onSecurityClick">챗봇이다.</b>
+      <b :class="$style.privacyDetector" @click = "onPrivircyClick">Privacy Detector</b>
+      <b :class="$style.b1" @click = "onPrivircyClick">디텍터이다.</b>
     </div>
+  </div>
   </template>
   <script>
     import { defineComponent } from "vue";
   
     export default defineComponent({
       name: "MainmainB",
+      data(){
+        return{
+          mode:'dark'
+        }
+      },
       methods: {
-        onFrameContainerClick() {
+        onSecurityClick() {
           this.$router.push("/security-assistant-w");
         },
-      },
+          onMainClick() {
+          this.$router.push("/");
+        },
+          onPrivircyClick() {
+            this.$router.push("/privacy-decetor");
+          },
+          onApiClick(){
+            this.$router.push("/api-key");
+          },
+        },
     });
+    
   </script>
   <style module>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    .app{
+      width: 100vw;
+      min-height: 100vw;
+      background: #f3f3f3;
+      color:#1f1f1f;
+    }
+
+    .dark{
+      background: #1f1f1f;
+      color: #f3f3f3;
+    }
     .mainmainBChild {
       position: absolute;
       background-color: #1f1f1f;
       top: 0px;
       left: 0px;
       width: 342px;
-      height: 79px;
+      height: 700px;
     }
     .mainmainBItem {
       position: absolute;
@@ -84,17 +113,21 @@
       max-width: 100%;
       overflow: hidden;
       max-height: 100%;
+      cursor: pointer;
     }
     .yUpik {
       position: absolute;
       top: 16px;
       left: 131px;
       font-size: 36px;
+      cursor: pointer;
+      
     }
     .chatModel {
       position: absolute;
       top: 15px;
       left: 81px;
+      cursor: pointer;
     }
     .chatModelWrapper {
       position: absolute;
@@ -112,11 +145,13 @@
     }
     .apiKey {
       position: absolute;
+      cursor: pointer;
       top: 15px;
       left: 106.5px;
     }
     .apiKeyWrapper {
       position: absolute;
+      cursor: pointer;
       top: 178px;
       left: 15px;
       border-radius: 13px;
@@ -136,7 +171,7 @@
       width: 1568px;
       height: 1001px;
     }
-    .mainmainBChild1 {
+    .mainmainBChild1 {  
       position: absolute;
       top: 160px;
       left: 418px;
@@ -153,6 +188,7 @@
       left: 1740px;
       width: 50px;
       height: 50px;
+      cursor: pointer;
     }
     .chatModel1 {
       position: absolute;
@@ -181,6 +217,7 @@
       box-sizing: border-box;
       width: 315px;
       height: 150px;
+      cursor: pointer;
     }
     .mainmainBChild4 {
       position: absolute;
@@ -192,6 +229,7 @@
       box-sizing: border-box;
       width: 315px;
       height: 150px;
+      cursor: pointer;
     }
     .mainmainBChild5 {
       position: absolute;
@@ -239,29 +277,39 @@
     }
     .securityAssistant {
       position: absolute;
+      cursor: pointer;
       top: 405px;
       left: 648px;
     }
     .p {
-      margin: 0;
+      position: absolute;
+      top:471px;
+      left:650px;
+      cursor: pointer;
+      display: inline-block;
+      width: 210px;
+      height: 100px;
     }
     .b {
       position: absolute;
       top: 471px;
-      left: 650px;
+      cursor: pointer;
       display: inline-block;
       width: 120px;
       height: 55px;
     }
     .privacyDetector {
       position: absolute;
+      cursor: pointer;
       top: 405px;
       left: 981px;
     }
+
     .b1 {
       position: absolute;
       top: 471px;
       left: 982px;
+      cursor: pointer;
       display: inline-block;
       width: 192px;
       height: 50px;
@@ -270,7 +318,6 @@
       position: relative;
       width: 100%;
       height: 1080px;
-      cursor: pointer;
       text-align: left;
       font-size: 30px;
       color: #fff;

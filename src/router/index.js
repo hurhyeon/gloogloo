@@ -4,6 +4,9 @@ import App from "../App.vue";
 
 import MainmainB from "../pages/MainmainB.vue";
 import SecurityAssistantW from "../pages/SecurityAssistantW.vue";
+import PrivacyDecetor from "../pages/PrivacyDecetor.vue";
+import ApiKey from "../pages/ApiKey.vue";
+
 
 
 const routes = [
@@ -17,6 +20,16 @@ const routes = [
     name: "SecurityAssistantW",
     component: SecurityAssistantW,
   },
+  {
+    path: "/privacy-decetor",
+    name: "PrivacyDecetor",
+    component: PrivacyDecetor,
+  },
+  {
+    path: "/api-key",
+    name: "ApiKey",
+    component: ApiKey,
+  }
 ];
 
 const router = createRouter({
