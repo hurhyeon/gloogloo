@@ -6,8 +6,8 @@
       <div :class="$style.mainmainBInner" />
       <img :class="$style.blackAndWhiteCollection11" alt="" src="/black-and-white-collection-11.svg" @click="onMainClick"/>
       <b :class="$style.yUpik" @click="onMainClick" >Y-upik</b> 
-      <div :class="$style.chatModelWrapper">
-        <div :class="$style.chatModel" @click ="onMainClick"> Chat Model </div>
+      <div :class="$style.chatModelWrapper" @click ="onMainClick">
+        <b :class="$style.chatModel" @click ="onMainClick"> Chat Model </b>
       </div>
       <div :class="$style.apiKeyWrapper" @click ="onApiClick">
         <b :class="$style.apiKey" @click ="onApiClick">API Key </b>
@@ -97,7 +97,7 @@
       top: 0px;
       left: 342px;
       background-color: #1f1f1f;
-      border: 1px solid #a0a1a2;
+      border: 1px solid #1f1f1f;
       box-sizing: border-box;
       width: 1571px;
       height: 1080px;
@@ -118,7 +118,7 @@
     .yUpik {
       position: absolute;
       top: 16px;
-      left: 131px;
+      left: 150px;
       font-size: 36px;
       cursor: pointer;
       
@@ -134,7 +134,7 @@
       top: 97px;
       left: 15px;
       border-radius: 13px;
-      background-color: #00c3a4;
+      background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
       width: 314px;
@@ -143,6 +143,10 @@
       cursor: pointer;
       font-size: 27px;
     }
+    .chatModelWrapper:hover{
+      background-color: #00c3a4;
+    }
+    
     .apiKey {
       position: absolute;
       cursor: pointer;
@@ -156,12 +160,15 @@
       left: 15px;
       border-radius: 13px;
       background-color: #1f1f1f;
-      border: 1px solid #1f1f1f;
+      border: 1px solid #bfbfc0;
       box-sizing: border-box;
       width: 314px;
       height: 63px;
       overflow: hidden;
       font-size: 27px;
+    }
+    .apiKeyWrapper:hover{
+      background-color: #00c3a4;
     }
     .rectangleDiv {
       position: absolute;

@@ -1,6 +1,24 @@
+<script setup>
+import { ref } from 'vue'
+
+const name = ref('Vue.js')
+
+function color(event) {
+  alert(`안녕 ${name.value}!`)
+  // 'event'는 네이티브 DOM 이벤트 객체입니다.
+  if (event) {
+    alert(event.target.tagName)
+  }
+}
+</script>x
 <template>
   <div class="app" :class="(mode === 'dark') ? 'dark' : 'light'">
-    <h1>hi</h1>
+    <div>
+    <h1>hi1</h1>
+    <h1>hi2</h1>
+    </div>
+	<button @click="color">환영하기</button>
+    
   </div>
   </template>
 
