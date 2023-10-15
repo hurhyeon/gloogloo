@@ -67,14 +67,14 @@
     
     .app{
       width: 100vw;
-      min-height: 100vw;
-      background: #f3f3f3;
+      min-height: 100vh;
+      background: #1f1f1f;
       color:#1f1f1f;
     }
 
     .dark{
       background: #1f1f1f;
-      color: #f3f3f3;
+      color: #1f1f1f;
     }
     .mainmainBChild {
       position: absolute;
@@ -91,6 +91,7 @@
       left: 0px;
       width: 345px;
       height: 1001px;
+      border: 1px solid #bfbfc0;
     }
     .mainmainBInner {
       position: absolute;
@@ -101,6 +102,7 @@
       box-sizing: border-box;
       width: 1571px;
       height: 1080px;
+      
     }
     .blackAndWhiteCollection11 {
       position: absolute;
@@ -110,9 +112,9 @@
       right: 94.2%;
       bottom: 93.52%;
       left: 2.4%;
-      max-width: 100%;
+      max-width: 100vw;
       overflow: hidden;
-      max-height: 100%;
+      max-height: 100vh;
       cursor: pointer;
     }
     .yUpik {
@@ -134,7 +136,7 @@
       top: 97px;
       left: 15px;
       border-radius: 13px;
-      background-color: #1f1f1f;
+      background-color: #00c3a4;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
       width: 314px;
@@ -177,6 +179,7 @@
       background-color: #333539;
       width: 1568px;
       height: 1001px;
+      border: 1px solid #bfbfc0;
     }
     .mainmainBChild1 {  
       position: absolute;
@@ -323,8 +326,8 @@
     }
     .mainmainB {
       position: relative;
-      width: 100%;
-      height: 1080px;
+      width: 100vw;
+      height: 100vh;
       text-align: left;
       font-size: 30px;
       color: #fff;

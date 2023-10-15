@@ -15,7 +15,7 @@
       <div :class="$style.rectangleDiv" />
       <div :class="$style.mainmainBChild1" />
       <img :class="$style.icon" alt="" src="/1.svg" />
-      <b :class="$style.chatModel1">Chat Model</b>
+      <b :class="$style.chatModel1">Api key</b>
       <div :class="$style.mainmainBChild2" />
       <div :class="$style.mainmainBChild3" @click ="onSecurityClick" />
       <div :class="$style.mainmainBChild4" @click ="onPrivircyClick"/>
