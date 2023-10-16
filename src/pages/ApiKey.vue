@@ -146,7 +146,9 @@
     .chatModelWrapper:focus{
       background-color: #00c3a4;
     }
-    
+    .chatModelWrapper:hover{
+      background-color: #00c3a4;
+    }
     .apiKey {
       position: absolute;
       cursor: pointer;
