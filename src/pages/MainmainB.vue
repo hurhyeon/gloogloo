@@ -4,7 +4,7 @@
     <div :class="$style.mainmainB" >
       <div :class="$style.mainmainBChild"  />
       <div :class="$style.mainmainBItem"  />
-      <div :class="$style.mainmainBInner" />
+      <div :class="$style.mainmainBInner" />  
       <div :class="$style.maincontent">
       <div :class="$style.content">
       <img :class="$style.blackAndWhiteCollection11" alt="" src="/black-and-white-collection-11.svg" @click="onMainClick"/>
@@ -80,8 +80,7 @@
     }
 
     .dark{
-      width: 100vw;
-      height: 100vh;
+      
       background: #1f1f1f;
       color: #1f1f1f;
     }
@@ -90,17 +89,14 @@
       
       top: 0px;
       left: 0px;
-      width: 100vw;
-      height: 100vh;
-      
+   
     }
     .mainmainBItem {
       position: absolute;
       background: #1f1f1f;
       top: 79px;
       left: 0px;
-      width: 100vw;
-      height: 100vh;
+      
      
       
     }
@@ -123,7 +119,6 @@
       position: absolute;
       top: 0px;
       left: 0px;
-      
       box-sizing: border-box;
       width: 340px;
       height: 80px;
@@ -217,12 +212,12 @@
     .rectangleDiv {
       position: absolute;
       top: 79px;
-      left: 343px;
+      left: 345px;
       background-color: #333539;
       width: 1568px;
       height: 1001px;
       border: 1px solid #bfbfc0;
-      border-left: 1px solid #1f1f1f;
+      border-left: hidden;
     }
     .mainmainBChild1 {  
       position: absolute;
@@ -383,13 +378,13 @@
      
     }
     .mainmainB {
-      position: relative;
+      position: fixed;
       width: 100vw;
       height: 100vh;
       text-align: left;
       font-size: 30px;
-      color: #fff;
       font-family: Inter;
+      background-color: #1f1f1f;
       
     }
 
