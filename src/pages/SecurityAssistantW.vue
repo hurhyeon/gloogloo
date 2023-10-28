@@ -10,13 +10,13 @@
               <b class="security-assistant"> security assistant</b>
             </div>
           </div>
-          <div class="or-11-wrapper">
+          <div class="list1">
             <b class="sql-injection">or 1=1</b>
           </div>
-          <div class="sql-injection-wrapper">
+          <div class="list2">
             <b class="sql-injection">sql injection</b>
           </div>
-          <div class="awdasdfjkasdl-wrapper">
+          <div class="list3">
             <b class="sql-injection">
               <p class="blank-line">awdasdfjkasdl</p>
             </b>
@@ -70,25 +70,27 @@ export default {
   left: 0;
   width: 250px;
   height: 100%;
-  background-color: #0075ff;
+  background-color: #a8d0ff;
   color: white;
 }
 
 .navbar-content {
   padding: 20px;
+  
 }
 
 .container-box {
   padding: 20px; 
-  border: 2px solid #000; 
-  border-radius: 10px; 
+  border: 1px solid #bfbfc0; 
+  border-radius: 13px; 
   width: 75vw; 
   height: 60vh; 
 }
 .chat1 {
   width: 73vw; 
   height: 6vh; 
-  background-color: #ff0000; 
+  background-color: #a8d0ff;
+  border-radius: 13px; 
 }
 .chat2{
  width: 73vw;
@@ -97,7 +99,8 @@ export default {
 .chat3{
  width: 73vw;
  height: 38vh;
- background-color: aquamarine;
+ background-color: #dfeeff;
+ border-radius: 13px; 
 }
 
 .request {
@@ -110,37 +113,44 @@ export default {
 
 .request1{
   padding: 20px; 
-  border: 2px solid #000; 
-  border-radius: 10px; 
+  border: 1px solid #000; 
+  border-radius: 13px; 
   width: 10vw; 
   height: 10vh; 
-  
+  border-color: #c0c0c0c0;
+  background-color: #edededed;
+
 }
 
 .request2{
-  
-padding: 20px; 
-  border: 2px solid #000; 
-  border-radius: 10px; 
+  padding: 20px; 
+  border: 1px solid #000; 
+  border-radius: 13px; 
   width: 10vw; 
-  height: 10vh; 
+  height: 10vh;
+  border-color: #c0c0c0c0;
+  background-color: #edededed;
+
 }
 
 .request3{
   padding: 20px; 
-  border: 2px solid #000; 
-  border-radius: 10px; 
+  border: 1px solid #000; 
+  border-radius: 13px; 
   width: 10vw; 
   height: 10vh; 
+  border-color: #c0c0c0c0;
+  background-color: #edededed;
 }
 
 .conversation {
   width: 100%;
   height: 10%; 
-  background-color: lightgray; 
+  background-color: #ffffff;  
   margin-top: 20px; 
-  border: 2px solid #000; 
-  border-radius: 10px; 
+  border: 1px solid #000; 
+  border-radius: 10px;
+  border-color: #0075ff;
 }
  
 .frame-child {
@@ -186,10 +196,10 @@ padding: 20px;
     text-align: left;
     font-size: 1.25rem;
   }
-  .or-11-wrapper {
+  .list1 {
     align-self: stretch;
     flex: 1;
-    border-radius: var(--br-smi);
+    border-radius: 13px;
     background-color: #f60b0b;
     overflow: hidden;
     display: flex;
@@ -197,17 +207,31 @@ padding: 20px;
     align-items: center;
     justify-content: center;
     padding: var(--padding-lg) var(--padding-13xl);
+    
   }
   .sql-injection {
     align-self: stretch;
     flex: 1;
     position: relative;
   }
-  .sql-injection-wrapper {
+  .list2 {
     align-self: stretch;
     flex: 1;
-    border-radius: var(--br-smi);
+    border-radius: 13px;
     background-color: #ee2121;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-lg) var(--padding-13xl);
+  }
+ 
+  .list3 {
+    align-self: stretch;
+    flex: 1;
+    border-radius: 13px;
+    background-color: #ad2222;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -217,18 +241,6 @@ padding: 20px;
   }
   .blank-line {
     margin: 0;
-  }
-  .awdasdfjkasdl-wrapper {
-    align-self: stretch;
-    flex: 1;
-    border-radius: var(--br-smi);
-    background-color: #ad2222;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: var(--padding-lg) var(--padding-13xl);
   }
   .frame-parent {
     position: relative;
