@@ -1,5 +1,5 @@
 <template>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  
   <div class="MainmainB" :class="(mode === 'dark') ? 'dark' : 'light'">
     <div :class="$style.mainmainB" >
       <div :class="$style.mainmainBChild"  />
@@ -72,6 +72,7 @@
         box-sizing: border-box;
         
     }
+    
     
     .app{
       background: #1f1f1f;

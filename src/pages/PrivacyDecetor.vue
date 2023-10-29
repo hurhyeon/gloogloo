@@ -10,7 +10,7 @@ function color(event) {
     alert(event.target.tagName)
   }
 }
-</script>x
+</script>
 <template>
   <div class="app" :class="(mode === 'dark') ? 'dark' : 'light'">
     <div>
