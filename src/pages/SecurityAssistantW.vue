@@ -9,7 +9,7 @@
               <b class="security-assiatant">security assistant</b>
             </div>
           </div>
-          <div class="list1">
+          <!-- <div class="list1">
             <b class="list-chat">or 1=1</b>
           </div>
           <div class="list2">
@@ -17,59 +17,112 @@
           </div>
           <div class="list3">
             <b class="list-chat">aaaa</b>
-          </div>
+          </div> -->
         </div>
       </div>
     </nav>
     
     <div class="home">
-      <div class="container-box">
+      <!-- <div class="container-box">
         <div class="chat1">
           <img class="pencil-icon" alt="" src="/pencil.png" />
         </div>
         <div class="chat2"></div>
-        <div class="chat3"></div>
-        <div class=" thumbs">
+        <div class="chat3"></div> -->
+        <!-- <div class=" thumbs">
           <img class="thumbs-up" src="/hand-thumbs-up-fill.png" alt="" />
           <img class="thumbs-down" src="/hand-thumbs-down-fill.png" alt="" />
-        </div>
-        <div class="request">
+        </div> -->
+        <!-- <div class="request">
         <div class="request1">request 1</div>
         <div class="request2">request 2</div>
         <div class="request3">request 3</div>
-      </div>
-      <div class="search">
+      </div> -->
+      <!-- <div class="search">
       <input class="conversation" type="text" placeholder="검색어 입력">
       <img class="send-icon" src="/send.png" @click="sendButtonClick">
-    </div>
-
-        </div>
+    </div> -->
+    <div class="container-box">
+          <div v-for="(message, index) in messages" :key="index" class="message" :class="{ 'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot' }">
+        {{ message.text }}
       </div>
     </div>
+    
+    <div class="search">
+      <input class="conversation" v-model="userMessage" @keydown.enter="sendMessage" type="text" placeholder="메시지를 입력하세요..." />
+      <img class="send-icon" src="/send.png" @click="sendMessage">
+    </div>
+   
+    </div> 
+      </div>
+    <!-- </div> -->
   
 </template>
 
 <script>
 export default {
-  name: 'SecurityAssistantW',
-  methods:{
-    sendButtonClick(){
-      alert('send')
-    }
-  }
-}
+  name:"SecurityAssistantW",
+  data() {
+    return {
+      userMessage: '',
+      messages: [],
+      apiKey: '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',
+      apiEndpoint: 'https://api.openai.com/v1/chat/completions',
+    };
+  },
+  methods: {
+    addMessage(sender, text) {
+      this.messages.push({ sender, text });
+    },
+    async fetchAIResponse(prompt) {
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.apiKey}`,
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [
+            { role: "system", content: "You are a helpful assistant." },
+            { role: "user", content: prompt }
+          ],
+        }),
+      };
+
+      try {
+        const response = await fetch(this.apiEndpoint, requestOptions);
+        const data = await response.json();
+        const aiResponse = data.choices[0].message.content;
+        return aiResponse;
+      } catch (error) {
+        console.error('OpenAI API 호출 중 오류 발생:', error);
+        return 'OpenAI API 호출 중 오류 발생';
+      }
+    },
+    async sendMessage() {
+      const message = this.userMessage.trim();
+      if (message.length === 0) return;
+
+      this.addMessage('user', message);
+      this.userMessage = '';
+
+      const aiResponse = await this.fetchAIResponse(message);
+      this.addMessage('bot', aiResponse);
+    },
+  },
+};
 </script>
 
 <style scoped>
 
 
 .home {
-  display: flex;
   justify-content: center;
   align-items: flex-start; /* 중앙에서 조금 위로 배치 */
   height: 100vh; /* 화면 전체 높이에 맞추기 */
   padding-top: 20px; /* 위쪽 패딩 추가 */
-  padding-left: 200px;
+  padding-left: 300px;
 
 }
 .navbar {
@@ -89,12 +142,14 @@ export default {
 }
 
 .container-box {
+  position:relative;
   padding: 20px; 
   border: 1px solid #bfbfc0; 
   border-radius: 13px; 
   width: 75vw; 
   height: 60vh; 
   margin-bottom: 5vh;
+  overflow-y: auto;
 }
 
 .chat1 {
@@ -137,7 +192,7 @@ export default {
   display: flex;
   flex-direction: row; /* 요소를 가로로 배치 */
   justify-content: space-between; /* 가로 공간 동일하게 분배 */
-  margin-top: 5vh;
+  margin-top: 10%;
 }
   
 
@@ -177,7 +232,8 @@ export default {
 
 
 .conversation{
-  width: 100%;
+  position: relative;
+  width: 93%;
   height: 30%;
   background-color: #ffffff;  
   margin-top: 5vh; 
@@ -194,8 +250,8 @@ export default {
 .send-icon{
  cursor: pointer;
  position: fixed;
- top:  82%;
- left: 90%;
+ top:  548px;
+ left: 1400px;
 }
 .robot-icon {
     position: relative;
@@ -300,6 +356,34 @@ export default {
     font-family: var(--font-inter);
   }
   
+
+.message {
+    padding: 10px;
+    margin: 5px;
+    background-color: #dfeeff;
+    border-radius: 13px; 
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: #a8d0ff;
+  border-radius: 13px; 
+}
+
+.bot-message {
+  align-self: flex-start;
+}
+
+
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 
 
 
