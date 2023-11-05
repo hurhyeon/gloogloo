@@ -51,7 +51,10 @@ export default {
 </script>
 
 <style scoped>
+.home {
+  background-color: #000;
 
+}
   .navbar {
     position: fixed;
     top: 0;

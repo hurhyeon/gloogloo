@@ -66,7 +66,7 @@ export default {
     return {
       userMessage: '',
       messages: [],
-      apiKey: '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',
+      apiKey: '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',
       apiEndpoint: 'https://api.openai.com/v1/chat/completions',
     };
   },
@@ -357,7 +357,8 @@ export default {
   }
   
 
-.message {
+  .message {
+    border: 1px solid #ccc;
     padding: 10px;
     margin: 5px;
     background-color: #dfeeff;
