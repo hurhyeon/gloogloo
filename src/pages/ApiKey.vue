@@ -10,51 +10,92 @@
             </div>
           </div>
           <div class="list1">
-            <b class="list-chat">chat model</b>
+            <b class="list-chat">Model</b>
           </div>
           <div class="list2">
-            <b class="list-chat">api key</b>
+            <b class="list-chat">API</b>
           </div>
         </div>
       </div>
     </nav>
     <div class = "home">
-    <div class="rectangleDiv" />
-      <div class="mainmainBChild1" />
-      <img class="icon" alt="" src="/1.svg" />
-      <b class="chatModel1">Chat Model</b>
-      <div class="mainmainBChild2" />
-      <div class="mainmainBChild3" @click ="onSecurityClick" />
-      <div class="mainmainBChild4" @click ="onPrivircyClick"/>
+    <div class="rectangleDiv"/> 
+      <div class="mainmainBChild1">
+        <img class="icon" alt="" src="/1.svg" />
+      <b class="chatModel1">Model</b>
+      <div class="mainmainBChild2" >
+      <div class="mainmainBChild3" @click ="onSecurityClick">
+        <b class="securityAssistant" @click="onSecurityClick">Security Assistant</b>
+      <b class="p" @click="onSecurityClick">The assistant-chatbot for information security industries.</b></div>
+      <div class="mainmainBChild4" @click ="onPrivircyClick">
+        <b class="privacyDetector" @click = "onPrivircyClick">Privacy Detector</b>
+      <b class="b1" @click = "onPrivircyClick">Masking the private information contained in the file such as hwp or docx.</b></div>
       <div class="mainmainBChild5" />
       <div class="mainmainBChild6" />
       <div class="mainmainBChild7" />
       <div class="mainmainBChild8" />
-      <b class="securityAssistant" @click="onSecurityClick">Security Assistant</b>
-      <b class="p" @click="onSecurityClick">챗봇이다.</b>
-      <b class="privacyDetector" @click = "onPrivircyClick">Privacy Detector</b>
-      <b class="b1" @click = "onPrivircyClick">디텍터이다.</b>
+      </div>   
     </div>
-  </div>
+      </div>
+    </div>
+  
 </template>
 
 <script>
-export default {
-      name: "app",
-      data(){
-        return{
-          mode:'dark'
-        }
+ import { defineComponent } from "vue";
+  
+  export default defineComponent({
+    name: "ApiKey",
+    data(){
+      return{
+        mode:'dark'
+      }
+    },
+    methods: {
+      onSecurityClick() {
+        this.$router.push("/security-assistant-w");
       },
-    }
-
+        onMainClick() {
+        this.$router.push("/");
+      },
+        onPrivircyClick() {
+          this.$router.push("/privacy-decetor");
+        },
+        onApiClick(){
+          this.$router.push("/api-key");
+        },
+      },
+  });
+  
 </script>
 
+
 <style scoped>
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+        
+  }
+    
+    
+  .app{
+      background: #1f1f1f;
+      color: #1f1f1f;
+      
+    }
+
+.dark{
+      
+  background: #1f1f1f;
+  color: #1f1f1f;
+  }
 .home {
   background-color: #000;
-
+  
 }
+
+
   .navbar {
     position: fixed;
     top: 0;
@@ -81,6 +122,7 @@ export default {
   font-size: var(--font-size-8xl);
   color: var(--color-black);
   font-family: var(--font-inter);
+
 }
 .frame-group {
   width: 14.31rem;
@@ -115,14 +157,14 @@ export default {
     align-items: center;
     width: 29.7rem;
     height: 3.5rem;
-    margin-left: 43%;
+    margin-left: 7rem;
     color:#ffffff;
     font-size: 36px;
 }
 
 .list-chat {
   position: relative;
-  color:#000;
+  color:#ffffff;
   align-items: center;
 }
 
@@ -143,6 +185,7 @@ export default {
     margin-left:5%;
     margin-right:5%;
     height: 20%;
+    margin-top:5%;
   }
   
 .list2 {
@@ -181,139 +224,138 @@ export default {
       border-top: hidden;
     }
     .mainmainBChild1{
-      margin-left:17%;
-      margin-top:2%;
+      margin-left: 17rem;
+      margin-top:5rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      height: 90vh;
-      width: 80vw;
+      height: 40rem;
+      width: 75rem;
     }
     .icon{
-      position: relative;
-      margin-left: 68%;
-      width: 50vw;
-      height: 5vh;
+      position: absolute;
+      bottom:77%;
+      left:90%; 
       cursor: pointer;
-      bottom: 38rem;
+      overflow:hidden;
+      
     }
     .chatModel1 {
       position: relative;
-      bottom: 38rem;
-      left: 23%;
+      left:5rem;
+      top:4rem;
       font-size: 40px;
-     
+      color:#ffffff;
     }
 
     .mainmainBChild2 {
+      left: 3rem;
+      top: 5rem;
       position: relative;
-      bottom: 38rem;
-      left: 23%;
       border-radius: 13px;
       background-color: #333539;
       border: 1px solid #24262e;
       box-sizing: border-box;
-      width: 70%;
-      height: 70vh;
-      
+      width: 68rem;
+      height: 30rem;
+     
     }
 
     .mainmainBChild3 {
-      position: absolute;
-      top: 30%;
-      left: 25%;
+      position: relative;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 20%;
-      height: 20%;
+      width: 20rem;
+      height: 10rem;
       cursor: pointer;
-      
+      top: 3rem;
+      left: 4rem;
     }
 
     .mainmainBChild4 {
-      position: absolute;
-      top: 30%;
-      left: 48%;
+      position: relative;
+      left: 25rem;
+      bottom:7rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 20%;
-      height: 20%;
+      width: 20rem;
+      height: 10rem;
       cursor: pointer;
       
     }
 
     .mainmainBChild5 {
-      position: absolute;
-      top: 30%;
-      left: 71%;
+      position: relative;
+      left: 46rem;
+      bottom:17rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 20%;
-      height: 20%;
+      width: 20rem;
+      height: 10rem;
       
     }
 
     .mainmainBChild6 {
-      position: absolute;
-      top: 60%;
-      left: 25%;
+      position: relative;
+      left: 4rem;
+      bottom: 14rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 20%;
-      height: 20%;
+      width: 20rem;
+      height: 10rem;
      
     }
 
     .mainmainBChild7 {
-      position: absolute;
-      top: 60%;
-      left: 48%;
+      position: relative;
+      bottom: 24rem;
+      left: 25rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 20%;
-      height: 20%;
-     
+      width: 20rem;
+      height: 10rem;
     }
     .mainmainBChild8 {
-      position: absolute;
-      top: 60%;
-      left: 71%;
+      position: relative;
+      bottom: 34rem;
+      left: 46rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 20%;
-      height: 20%;
+      width: 20rem;
+      height: 10rem;
      
     }
 
     .securityAssistant {
-      position: absolute;
+      position: relative;
       cursor: pointer;
-      top: 33%;
-      left: 27%;
-      
+      font-size: 30px;
+      color:#ffffff;
+      left: 1rem;
+      top:1rem;
     }
 
     .p {
       position: absolute;
-      top:40%;
-      left:27%;
+      top:50%;
+      left:8%;
       cursor: pointer;
       display: inline-block;
-     
-      
+      color:#77787f;
+      font-weight: 200;
     }
     .b {
       position: absolute;
@@ -327,17 +369,18 @@ export default {
     .privacyDetector {
       position: absolute;
       cursor: pointer;
-      top: 33%;
-      left: 50%;
-      
+      color:#ffffff;
+      font-size:30px;
+      left: 1rem;
+      top: 1rem;
     }
     .b1 {
       position: absolute;
-      top: 40%;
-      left: 50%;
+      top: 50%;
+      left: 8%;
       cursor: pointer;
       display: inline-block;
-   
-     
+      color:#77787f;
+      font-weight: 200;
     }
 </style>
