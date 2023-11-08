@@ -1,5 +1,5 @@
 <template>
-  <div class="app" :class="(mode === 'dark') ? 'dark' : 'light'">
+  <div class="home" >
     <nav class="navbar">
       <div class="navbar-content">
         <div class="frame-parent">
@@ -18,8 +18,8 @@
         </div>
       </div>
     </nav>
-    <div class = "home">
-    <div class="rectangleDiv"/> 
+    
+    <div class="rectangleDiv"> </div> 
       <div class="mainmainBChild1">
         <img class="icon" alt="" src="/1.svg" />
       <b class="chatModel1">Model</b>
@@ -30,11 +30,11 @@
       <div class="mainmainBChild4" @click ="onPrivircyClick">
         <b class="privacyDetector" @click = "onPrivircyClick">Privacy Detector</b>
       <b class="b1" @click = "onPrivircyClick">Masking the private information contained in the file such as hwp or docx.</b></div>
-      <div class="mainmainBChild5" />
-      <div class="mainmainBChild6" />
-      <div class="mainmainBChild7" />
-      <div class="mainmainBChild8" />
-      </div>   
+      <div class="mainmainBChild5"> </div>
+      <div class="mainmainBChild6"> </div>
+      <div class="mainmainBChild7"> </div>
+      <div class="mainmainBChild8"> </div>
+       
     </div>
       </div>
     </div>
@@ -70,32 +70,13 @@
 </script>
 
 
-<style scoped>
- * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-        
-  }
-    
-    
-  .app{
-      background: #1f1f1f;
-      color: #1f1f1f;
-      
-    }
-
-.dark{
-      
-  background: #1f1f1f;
-  color: #1f1f1f;
-  }
+<style scoped>    
 .home {
-  background-color: #000;
-  
+
+  height: 100vh; /* 화면 전체 높이에 맞추기 */
+  background-color:#000;
+
 }
-
-
   .navbar {
     position: fixed;
     top: 0;
@@ -171,7 +152,7 @@
 .list1 {
     align-self: stretch;
     border-radius: 13px;
-    background-color: #a0a1a2;
+   
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -179,7 +160,7 @@
     justify-content: center;
     padding: var(--padding-lg) var(--padding-13xl);
     cursor: pointer;
-    background-color: #00c3a4;
+   
     border: 1px solid #bfbfc0;
     font-size: 27px;
     margin-left:5%;
@@ -191,7 +172,6 @@
 .list2 {
   align-self: stretch;
     border-radius: 13px;
-    background-color: #a0a1a2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -199,7 +179,6 @@
     justify-content: center;
     padding: var(--padding-lg) var(--padding-13xl);
     cursor: pointer;
-    background-color: #00c3a4;
     border: 1px solid #bfbfc0;
     font-size: 27px;
     margin-left:5%;
@@ -225,13 +204,14 @@
     }
     .mainmainBChild1{
       margin-left: 17rem;
-      margin-top:5rem;
+      margin-top:4rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
       height: 40rem;
       width: 75rem;
+      
     }
     .icon{
       position: absolute;
@@ -382,5 +362,13 @@
       display: inline-block;
       color:#77787f;
       font-weight: 200;
+    }
+
+    .list1:hover{
+      background-color: #00c3a4;
+    }
+
+    .list2:hover{
+      background-color: #00c3a4;
     }
 </style>

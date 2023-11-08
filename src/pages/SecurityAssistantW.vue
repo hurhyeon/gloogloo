@@ -8,6 +8,7 @@
               <img class="robot-icon" alt="" src="/robot.png" />
               <b class="security-assiatant">security assistant</b>
             </div>
+            <img class="blackAndWhiteCollection11" alt="" src="/black-and-white-collection-11.svg" @click="onMainClick"/>
           </div>
           <!-- <div class="list1">
             <b class="list-chat">or 1=1</b>
@@ -21,7 +22,7 @@
         </div>
       </div>
     </nav>
-    
+   
     <div class="home">
       <!-- <div class="container-box">
         <div class="chat1">
@@ -61,20 +62,26 @@
 
 <script>
 export default {
-  name:"SecurityAssistantW",
+  name: "SecurityAssistantW",
   data() {
     return {
       userMessage: '',
       messages: [],
-      apiKey: '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',
+      apiKey: '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',
       apiEndpoint: 'https://api.openai.com/v1/chat/completions',
+      conversation: [], 
     };
   },
   methods: {
+    onMainClick() {
+        this.$router.push("/");
+      },
+
     addMessage(sender, text) {
       this.messages.push({ sender, text });
     },
     async fetchAIResponse(prompt) {
+      this.conversation.push({ role: 'user', content: prompt });
       const requestOptions = {
         method: 'POST',
         headers: {
@@ -83,10 +90,7 @@ export default {
         },
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
-          messages: [
-            { role: "system", content: "You are a helpful assistant." },
-            { role: "user", content: prompt }
-          ],
+          messages: this.conversation, 
         }),
       };
 
@@ -94,12 +98,32 @@ export default {
         const response = await fetch(this.apiEndpoint, requestOptions);
         const data = await response.json();
         const aiResponse = data.choices[0].message.content;
+        this.conversation.push({ role: 'assistant', content: aiResponse });
+        
+        this.streamAIResponse(aiResponse);
+     
         return aiResponse;
       } catch (error) {
         console.error('OpenAI API 호출 중 오류 발생:', error);
         return 'OpenAI API 호출 중 오류 발생';
       }
     },
+  
+  streamAIResponse(response) {
+
+   const streamInterval = 100; 
+   let index = 0;
+
+   const interval = setInterval(() => {
+     if(index < response.length) {
+       this.addMessage('bot', response.charAt(index));
+       index++;
+     } else {
+       clearInterval(interval);
+     }
+   }, streamInterval);
+},
+
     async sendMessage() {
       const message = this.userMessage.trim();
       if (message.length === 0) return;
@@ -107,6 +131,7 @@ export default {
       this.addMessage('user', message);
       this.userMessage = '';
 
+      
       const aiResponse = await this.fetchAIResponse(message);
       this.addMessage('bot', aiResponse);
     },
@@ -116,12 +141,11 @@ export default {
 
 <style scoped>
 
-
 .home {
   justify-content: center;
-  align-items: flex-start; /* 중앙에서 조금 위로 배치 */
-  height: 100vh; /* 화면 전체 높이에 맞추기 */
-  padding-top: 20px; /* 위쪽 패딩 추가 */
+  align-items: flex-start; 
+  height: 100vh; 
+  padding-top: 20px; 
   padding-left: 300px;
 
 }
@@ -152,6 +176,24 @@ export default {
   overflow-y: auto;
 }
 
+.container-box::-webkit-scrollbar {
+  width: 8px; /* 수직 스크롤바의 너비 조절 */
+  
+}
+
+.container-box::-webkit-scrollbar-track {
+  
+  border-radius: 13px;
+}
+
+.container-box::-webkit-scrollbar-thumb {
+  background: #888; /* 스크롤바 손잡이의 배경색 */
+  border-radius: 13px;
+}
+
+.container-box::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 .chat1 {
   width: 73vw; 
   height: 6vh; 
@@ -234,7 +276,7 @@ export default {
 .conversation{
   position: relative;
   width: 93%;
-  height: 30%;
+  height: 20%;
   background-color: #ffffff;  
   margin-top: 5vh; 
   border-radius: 10px;
@@ -250,7 +292,7 @@ export default {
 .send-icon{
  cursor: pointer;
  position: fixed;
- top:  548px;
+ top:  538px;
  left: 1400px;
 }
 .robot-icon {
@@ -369,6 +411,7 @@ export default {
   align-self: flex-end;
   background-color: #a8d0ff;
   border-radius: 13px; 
+  text-align: right;
 }
 
 .bot-message {
@@ -385,7 +428,10 @@ export default {
   flex-direction: column-reverse;
 }
 
-
+.blackAndWhiteCollection11{
+  cursor: pointer;
+  margin-top:39rem;
+}
 
 
 
