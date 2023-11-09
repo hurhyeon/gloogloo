@@ -67,7 +67,7 @@ export default {
     return {
       userMessage: '',
       messages: [],
-      apiKey: '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',
+      apiKey: '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',
       apiEndpoint: 'https://api.openai.com/v1/chat/completions',
       conversation: [], 
     };
@@ -80,10 +80,11 @@ export default {
     addMessage(sender, text) {
       this.messages.push({ sender, text });
     },
+
     async fetchAIResponse(prompt) {
       this.conversation.push({ role: 'user', content: prompt });
       const requestOptions = {
-        method: 'POST',
+        method: 'POST', 
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${this.apiKey}`,
@@ -98,8 +99,9 @@ export default {
         const response = await fetch(this.apiEndpoint, requestOptions);
         const data = await response.json();
         const aiResponse = data.choices[0].message.content;
-        this.conversation.push({ role: 'assistant', content: aiResponse });
         
+        
+        this.conversation.push({ role: 'assistant', content: aiResponse });
         this.streamAIResponse(aiResponse);
      
         return aiResponse;
@@ -109,31 +111,21 @@ export default {
       }
     },
   
-  streamAIResponse(response) {
+      streamAIResponse(response) {
+        this.addMessage('bot', response);
+      },
+      async sendMessage() {
+        const message = this.userMessage.trim();
+        if (message.length === 0) return;
 
-   const streamInterval = 100; 
-   let index = 0;
+        this.addMessage('user', message);
+        this.userMessage = '';
 
-   const interval = setInterval(() => {
-     if(index < response.length) {
-       this.addMessage('bot', response.charAt(index));
-       index++;
-     } else {
-       clearInterval(interval);
-     }
-   }, streamInterval);
-},
-
-    async sendMessage() {
-      const message = this.userMessage.trim();
-      if (message.length === 0) return;
-
-      this.addMessage('user', message);
-      this.userMessage = '';
+        await this.fetchAIResponse(message);
 
       
-      const aiResponse = await this.fetchAIResponse(message);
-      this.addMessage('bot', aiResponse);
+      // const aiResponse = await this.fetchAIResponse(message);
+      // this.addMessage('bot', aiResponse);
     },
   },
 };
@@ -292,7 +284,7 @@ export default {
 .send-icon{
  cursor: pointer;
  position: fixed;
- top:  538px;
+ top:  535px;
  left: 1400px;
 }
 .robot-icon {
