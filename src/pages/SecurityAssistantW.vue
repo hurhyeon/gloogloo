@@ -67,7 +67,7 @@ export default {
     return {
       userMessage: '',
       messages: [],
-      apiKey: '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',
+      apiKey: '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',
       apiEndpoint: 'https://api.openai.com/v1/chat/completions',
       conversation: [], 
     };
@@ -128,7 +128,7 @@ export default {
       // this.addMessage('bot', aiResponse);
     },
   },
-};
+}
 </script>
 
 <style scoped>
