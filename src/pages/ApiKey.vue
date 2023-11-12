@@ -16,6 +16,18 @@
             <b class="list-chat">API</b>
           </div>
         </div>
+
+
+        <div class="additional-content">
+          <div class="list3" @click="onSecurityClick">
+            <b class="list-chat">Security Assistant</b>
+           
+          </div>
+          <div class="list4" @click="onPrivircyClick">
+            <b class="list-chat">Privacy Detector</b>
+            
+          </div>
+        </div>
       </div>
     </nav>
     
@@ -186,7 +198,45 @@
     height: 20%;
     
   }
- 
+
+  .list3 {
+    align-self: stretch;
+    border-radius: 13px;
+   
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-lg) var(--padding-13xl);
+    cursor: pointer;
+   
+    border: 1px solid #bfbfc0;
+    font-size: 27px;
+    margin-left:5%;
+    margin-right:5%;
+    height: 20%;
+    margin-top:5%;
+  }
+  .list4 {
+    align-self: stretch;
+    border-radius: 13px;
+   
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-lg) var(--padding-13xl);
+    cursor: pointer;
+   
+    border: 1px solid #bfbfc0;
+    font-size: 27px;
+    margin-left:5%;
+    margin-right:5%;
+    height: 20%;
+    margin-top:5%;
+  }
   .blackAndWhiteCollection11 {
       position: absolute;
       top:5%;
@@ -371,4 +421,52 @@
     .list2:hover{
       background-color: #00c3a4;
     }
+    .list3:hover{
+      background-color: #00c3a4;
+    }
+    .list4:hover{
+      background-color: #00c3a4;
+    }
+    .additional-content{
+      display:none;
+    }
+
+ @media (max-width: 768px) {
+  .rectangleDiv,
+  .mainmainBChild1,
+  .icon,
+  .chatModel1,
+  .mainmainBChild2,
+  .mainmainBChild3,
+  .mainmainBChild4,
+  .mainmainBChild5,
+  .mainmainBChild6,
+  .mainmainBChild7,
+  .mainmainBChild8 {
+    display: none;
+  }
+
+  .navbarcontent .frame-group {
+    display: none; /* 네비게이션 바의 일반 항목 숨기기 */
+  }
+  .yupik{
+    border-bottom: hidden;
+  }
+  .additional-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 300px;
+  }
+  /* 네비게이션 바 스타일 수정 */
+  .navbar {
+    width: 100%; /* 화면 전체 너비로 설정 */
+  }
+ 
+
+
+  /* 다른 스타일이 필요한 경우 추가 */
+}
 </style>
+
