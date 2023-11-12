@@ -1,4 +1,11 @@
 <template>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+  </head>
    <nav class="navbar">
       <div class="navbar-content">
         <div class="frame-parent">
@@ -141,5 +148,16 @@ export default {
   color: white;
   padding: 10px 15px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+
+  .chat-container {
+    width: 100%;
+    height: 100vh;
+  }
 }
 </style>

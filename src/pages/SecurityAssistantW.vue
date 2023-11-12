@@ -6,7 +6,8 @@
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
   </head>
- <div>
+ 
+  <div class="container"> 
     <nav class="navbar">
       <div class="navbar-content">
         <div class="frame-parent">
@@ -431,7 +432,32 @@ export default {
   cursor: pointer;
   margin-top:39rem;
 }
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
+/* 화면이 768px 이하로 줄어들 때만 chat-container와 user-input 보이기 */
+@media screen and (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+
+  .home {
+    padding-left: 20px; /* 좌측 패딩을 작게 조절하여 좁은 화면에서도 보이도록 함 */
+  }
+
+  .container-box {
+    width: 100%;
+  }
+
+  .search {
+    width: 100%;
+  }
+}
 
 
 
