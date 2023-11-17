@@ -1,7 +1,7 @@
 <script setup>
 import { VueFlow, useVueFlow } from '@vue-flow/core'
 import { nextTick, watch } from 'vue'
-import Sidebar from '../components/Sidebar.vue'
+import Sidebar from '../components/SideBar.vue'
 
 let id = 0
 function getId() {
