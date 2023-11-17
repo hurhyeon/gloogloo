@@ -59,7 +59,7 @@
     
     <div class="search">
       <input class="conversation" v-model="userMessage" @keydown.enter="sendMessage" type="text" placeholder="메시지를 입력하세요..." />
-      <img class="send-icon" src="/send.png" @click="sendMessage">
+      <!-- <img class="send-icon" src="/send.png" @click="sendMessage"> -->
     </div>
    
     </div> 
@@ -75,12 +75,16 @@ export default {
     return {
       userMessage: '',
       messages: [],
-      apiKey: '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',
+      apiKey: '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',
       apiEndpoint: 'https://api.openai.com/v1/chat/completions',
       conversation: [], 
+      eventSource: null, 
     };
+    
   },
+  
   methods: {
+    
     onMainClick() {
         this.$router.push("/");
       },
@@ -122,19 +126,51 @@ export default {
       streamAIResponse(response) {
         this.addMessage('bot', response);
       },
+
+
       async sendMessage() {
         const message = this.userMessage.trim();
         if (message.length === 0) return;
 
         this.addMessage('user', message);
         this.userMessage = '';
-
+        
+        // 연결
+        this.startSSE()
         await this.fetchAIResponse(message);
 
       
       // const aiResponse = await this.fetchAIResponse(message);
       // this.addMessage('bot', aiResponse);
+      
     },
+
+    //연결
+    async startSSE() {
+      this.eventSource = new EventSource('/streamFromOpenAI');
+
+      this.eventSource.onmessage = (event) => {
+        const char = event.data;
+        this.addMessage('bot', char);
+      };
+
+      this.eventSource.onerror = (error) => {
+        console.error('SSE 오류:', error);
+   
+        this.eventSource.close();
+      };
+    },
+  },
+  
+  //연결
+  mounted() {
+    this.startSSE();
+  },
+  //연결
+  beforeUnmount() {
+    if (this.eventSource) {
+      this.eventSource.close();
+    }
   },
 }
 </script>
@@ -275,7 +311,7 @@ export default {
 
 .conversation{
   position: relative;
-  width: 93%;
+  width: 100%;
   height: 20%;
   background-color: #ffffff;  
   margin-top: 5vh; 
