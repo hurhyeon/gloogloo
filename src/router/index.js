@@ -6,7 +6,7 @@ import MainmainB from "../pages/MainmainB.vue";
 import SecurityAssistantW from "../pages/SecurityAssistantW.vue";
 import PrivacyDecetor from "../pages/PrivacyDecetor.vue";
 import ApiKey from "../pages/ApiKey.vue";
-
+import Chaining from "../pages/ChainIng.vue";
 
 
 const routes = [
@@ -29,6 +29,11 @@ const routes = [
     path: "/api-key",
     name: "ApiKey",
     component: ApiKey,
+  },
+  {
+    path: "/chain-ing",
+    name: "ChainIng",
+    component: Chaining,
   }
 ];
 

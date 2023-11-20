@@ -6,11 +6,11 @@
           <div class="frame-group">
             <div class="yupik">
               <img class="blackAndWhiteCollection11" alt="" src="/black-and-white-collection-11.svg" @click="onMainClick"/>
-              <b class="yu-pik">Yu-pik</b>
+              <b class="yu-pik">Y-upik</b>
             </div>
           </div>
-          <div class="list1">
-            <b class="list-chat">Model</b>
+          <div class="list1" @click="onMainClick">
+            <b class="list-chat" @click="onMainClick">Model</b>
           </div>
           <div class="list2">
             <b class="list-chat">API</b>
@@ -31,24 +31,30 @@
       </div>
     </nav>
     
-    <div class="rectangleDiv"> </div> 
-      <div class="mainmainBChild1">
-        <img class="icon" alt="" src="/1.svg" />
-      <b class="chatModel1">Model</b>
-      <div class="mainmainBChild2" >
-      <div class="mainmainBChild3" @click ="onSecurityClick">
-        <b class="securityAssistant" @click="onSecurityClick">Security Assistant</b>
-      <b class="p" @click="onSecurityClick">The assistant-chatbot for information security industries.</b></div>
-      <div class="mainmainBChild4" @click ="onPrivircyClick">
-        <b class="privacyDetector" @click = "onPrivircyClick">Privacy Detector</b>
-      <b class="b1" @click = "onPrivircyClick">Masking the private information contained in the file such as hwp or docx.</b></div>
-      <div class="mainmainBChild5"> </div>
-      <div class="mainmainBChild6"> </div>
-      <div class="mainmainBChild7"> </div>
-      <div class="mainmainBChild8"> </div>
-       
+    <div class ="blackspace"></div>
+    
+    <div class ="mainspace">
+      <h1>API 명세페이지</h1>
+      <p>이 문서는 Security Assistant API와 Privacy Decetor API를 사용한 구현 방법을 안내합니다.</p>
+
+      <hr style="width: 70rem; margin: 20px 0;">
+
+      <h1>Security Assistant</h1>
+
+      <h1>요청</h1>
+
+      <h2>쿼리 파라미터</h2>
+
+
+      
+      
+      
     </div>
-      </div>
+
+
+
+
+
     </div>
   
 </template>
@@ -86,7 +92,7 @@
 .home {
 
   height: 100vh; /* 화면 전체 높이에 맞추기 */
-  background-color:#000;
+  background-color:#333539;
 
 }
   .navbar {
@@ -196,7 +202,7 @@
     margin-left:5%;
     margin-right:5%;
     height: 20%;
-    
+    background-color: #00c3a4;
   }
 
   .list3 {
@@ -245,174 +251,33 @@
       cursor: pointer;
     }
 
-    .rectangleDiv {
-      
-      background-color: #333539;
-      border: 1px solid #bfbfc0;
-      border-left: hidden;
-      border-top: hidden;
-    }
-    .mainmainBChild1{
-      margin-left: 17rem;
-      margin-top:4rem;
-      border-radius: 13px;
+  
+    .blackspace{
+      height: 5rem;
+      border-bottom: solid 1px #a0a1a2;
       background-color: #1f1f1f;
-      border: 1px solid #bfbfc0;
-      box-sizing: border-box;
-      height: 40rem;
-      width: 75rem;
-      
-    }
-    .icon{
-      position: absolute;
-      bottom:77%;
-      left:90%; 
-      cursor: pointer;
-      overflow:hidden;
-      
-    }
-    .chatModel1 {
-      position: relative;
-      left:5rem;
-      top:4rem;
-      font-size: 40px;
-      color:#ffffff;
     }
 
-    .mainmainBChild2 {
-      left: 3rem;
-      top: 5rem;
-      position: relative;
-      border-radius: 13px;
-      background-color: #333539;
-      border: 1px solid #24262e;
-      box-sizing: border-box;
-      width: 68rem;
-      height: 30rem;
-     
+    .mainspace{
+      margin-left: 300px;
+      margin-top: 50px;
     }
 
-    .mainmainBChild3 {
-      position: relative;
-      border-radius: 13px;
-      background-color: #1f1f1f;
-      border: 1px solid #bfbfc0;
-      box-sizing: border-box;
-      width: 20rem;
-      height: 10rem;
-      cursor: pointer;
-      top: 3rem;
-      left: 4rem;
-    }
 
-    .mainmainBChild4 {
-      position: relative;
-      left: 25rem;
-      bottom:7rem;
-      border-radius: 13px;
-      background-color: #1f1f1f;
-      border: 1px solid #bfbfc0;
-      box-sizing: border-box;
-      width: 20rem;
-      height: 10rem;
-      cursor: pointer;
-      
-    }
+    .api1 {
+    font-size: 30px;
+    color:#ffffff;
+  }
 
-    .mainmainBChild5 {
-      position: relative;
-      left: 46rem;
-      bottom:17rem;
-      border-radius: 13px;
-      background-color: #1f1f1f;
-      border: 1px solid #bfbfc0;
-      box-sizing: border-box;
-      width: 20rem;
-      height: 10rem;
-      
-    }
 
-    .mainmainBChild6 {
-      position: relative;
-      left: 4rem;
-      bottom: 14rem;
-      border-radius: 13px;
-      background-color: #1f1f1f;
-      border: 1px solid #bfbfc0;
-      box-sizing: border-box;
-      width: 20rem;
-      height: 10rem;
-     
-    }
 
-    .mainmainBChild7 {
-      position: relative;
-      bottom: 24rem;
-      left: 25rem;
-      border-radius: 13px;
-      background-color: #1f1f1f;
-      border: 1px solid #bfbfc0;
-      box-sizing: border-box;
-      width: 20rem;
-      height: 10rem;
-    }
-    .mainmainBChild8 {
-      position: relative;
-      bottom: 34rem;
-      left: 46rem;
-      border-radius: 13px;
-      background-color: #1f1f1f;
-      border: 1px solid #bfbfc0;
-      box-sizing: border-box;
-      width: 20rem;
-      height: 10rem;
-     
-    }
 
-    .securityAssistant {
-      position: relative;
-      cursor: pointer;
-      font-size: 30px;
-      color:#ffffff;
-      left: 1rem;
-      top:1rem;
-    }
 
-    .p {
-      position: absolute;
-      top:50%;
-      left:8%;
-      cursor: pointer;
-      display: inline-block;
-      color:#77787f;
-      font-weight: 200;
-    }
-    .b {
-      position: absolute;
-      top: 471px;
-      cursor: pointer;
-      display: inline-block;
-      width: 120px;
-      height: 55px;
-      
-    }
-    .privacyDetector {
-      position: absolute;
-      cursor: pointer;
-      color:#ffffff;
-      font-size:30px;
-      left: 1rem;
-      top: 1rem;
-    }
-    .b1 {
-      position: absolute;
-      top: 50%;
-      left: 8%;
-      cursor: pointer;
-      display: inline-block;
-      color:#77787f;
-      font-weight: 200;
-    }
+
+
+
+
+
 
     .list1:hover{
       background-color: #00c3a4;
@@ -430,6 +295,13 @@
     .additional-content{
       display:none;
     }
+
+    h1,p,h2{
+      color:#ffffff
+    }
+
+
+
 
  @media (max-width: 768px) {
   .rectangleDiv,
@@ -467,6 +339,6 @@
 
 
   /* 다른 스타일이 필요한 경우 추가 */
-}
+ }
 </style>
 

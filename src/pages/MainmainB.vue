@@ -1,355 +1,428 @@
 <template>
-  
-  <div class="MainmainB" :class="(mode === 'dark') ? 'dark' : 'light'">
-    <div :class="$style.mainmainB" >
-      <div :class="$style.mainmainBChild"  />
-      <div :class="$style.mainmainBItem"  />
-      <div :class="$style.mainmainBInner" />  
-      <div :class="$style.maincontent">
-      <div :class="$style.content">
-      <img :class="$style.blackAndWhiteCollection11" alt="" src="/black-and-white-collection-11.svg" @click="onMainClick"/>
-      <b :class="$style.yUpik" @click="onMainClick" >Y-upik</b> 
-    </div>
-      <div :class="$style.chatModelWrapper" @click ="onMainClick">
-        <b :class="$style.chatModel" @click ="onMainClick"> Chat Model </b>
+  <div class="home" >
+    <nav class="navbar">
+      <div class="navbar-content">
+        <div class="frame-parent">
+          <div class="frame-group">
+            <div class="yupik">
+              <img class="blackAndWhiteCollection11" alt="" src="/black-and-white-collection-11.svg" @click="onMainClick"/>
+              <b class="yu-pik">Y-upik</b>
+            </div>
+          </div>
+          <div class="list1">
+            <b class="list-chat">Model</b>
+          </div>
+          <div class="list2" @click="onApiClick">
+            <b class="list-chat" @click="onApiClick">API</b>
+          </div>
+        </div>
+
+
+        <div class="additional-content">
+          <div class="list3" @click="onSecurityClick">
+            <b class="list-chat">Security Assistant</b>
+           
+          </div>
+          <div class="list4" @click="onPrivircyClick">
+            <b class="list-chat">Privacy Detector</b>
+            
+          </div>
+          <div class="list5" @click="onChainingClick">
+            <b class="list-chat">Chaining</b>
+            
+          </div>
+        </div>
       </div>
-      <div :class="$style.apiKeyWrapper" @click ="onApiClick">
-        <b :class="$style.apiKey" @click ="onApiClick">API Key </b>
+    </nav>
+    
+    <div class="rectangleDiv"> </div> 
+      
+    <div class="mainmainBChild1">
+        <img class="icon" alt="" src="/1.svg" />
+      
+        <b class="chatModel1">Model</b>
+      <div class="mainmainBChild2" >
+        
+      <div class="mainmainBChild3" @click ="onSecurityClick">
+        <b class="securityAssistant" @click="onSecurityClick">Security Assistant</b>
+      <b class="p" @click="onSecurityClick">The assistant-chatbot for information security industries.</b></div>
+      
+      <div class="mainmainBChild4" @click ="onPrivircyClick">
+        <b class="privacyDetector" @click = "onPrivircyClick">Privacy Detector</b>
+      <b class="b1" @click = "onPrivircyClick">Masking the private information contained in the file such as hwp or docx.</b></div>
+      
+      <div class="mainmainBChild5" @click ="onChainingClick">
+        <b class="privacyDetector" @click = "onChainingClick">Chaining</b>
+      <b class="b1" @click = "onChainingClick">임시 설명 임시 설명</b></div>
+      
+      <div class="mainmainBChild6"> </div>
+      
+      <div class="mainmainBChild7"> </div>
+      
+      <div class="mainmainBChild8"> </div>
+       
+    </div>
       </div>
     </div>
-      <div :class="$style.rectangleDiv" />
-      <div :class="$style.mainmainBChild1" />
-      <img :class="$style.icon" alt="" src="/1.svg" />
-      <b :class="$style.chatModel1">Chat Model</b>
-      <div :class="$style.mainmainBChild2" />
-      <div :class="$style.mainmainBChild3" @click ="onSecurityClick" />
-      <div :class="$style.mainmainBChild4" @click ="onPrivircyClick"/>
-      <div :class="$style.mainmainBChild5" />
-      <div :class="$style.mainmainBChild6" />
-      <div :class="$style.mainmainBChild7" />
-      <div :class="$style.mainmainBChild8" />
-      <b :class="$style.securityAssistant" @click="onSecurityClick">Security Assistant</b>
-      <b :class="$style.p" @click="onSecurityClick">챗봇이다.</b>
-      <b :class="$style.privacyDetector" @click = "onPrivircyClick">Privacy Detector</b>
-      <b :class="$style.b1" @click = "onPrivircyClick">디텍터이다.</b>
-    </div>
-  </div>
   
-  </template>
-  <script>
-    import { defineComponent } from "vue";
+</template>
+
+<script>
+ import { defineComponent } from "vue";
   
-    export default defineComponent({
-      name: "MainmainB",
-      data(){
-        return{
-          mode:'dark'
+  export default defineComponent({
+    name: "MainmainB",
+    data(){
+      return{
+        mode:'dark'
+      }
+    },
+    methods: {
+      onSecurityClick() {
+        this.$router.push("/security-assistant-w");
+      },
+        onMainClick() {
+        this.$router.push("/");
+      },
+        onPrivircyClick() {
+          this.$router.push("/privacy-decetor");
+        },
+        onApiClick(){
+          this.$router.push("/api-key");
+        },
+        onChainingClick(){
+          this.$router.push("/chain-ing")
         }
       },
-      methods: {
-        onSecurityClick() {
-          this.$router.push("/security-assistant-w");
-        },
-          onMainClick() {
-          this.$router.push("/");
-        },
-          onPrivircyClick() {
-            this.$router.push("/privacy-decetor");
-          },
-          onApiClick(){
-            this.$router.push("/api-key");
-          },
-        },
-    });
-    
-  </script>
-  <style module>
+  });
+  
+</script>
 
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        
-    }
-    
-    
-    .app{
-      background: #1f1f1f;
-      color: #1f1f1f;
-      
-    }
+<style scoped>    
+.home {
 
-    .dark{
-      
-      background: #1f1f1f;
-      color: #1f1f1f;
-    }
-    .mainmainBChild {
-      position: absolute;
-      
-      top: 0px;
-      left: 0px;
+  height: 100vh; /* 화면 전체 높이에 맞추기 */
+  background-color:#000;
+
+}
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #1f1f1f;
+    border-right: 1px solid #a0a1a2;
+  
+}
+
+
+
+.frame-parent {
+  position: relative;
+  width: 100%;
+  height: 21.94rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10%;
+  text-align: center;
+  font-size: var(--font-size-8xl);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+
+}
+.frame-group {
+  width: 14.31rem;
+  height: 3.13rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  gap: 0.63rem;
+  text-align: left;
+  font-size: 1.25rem;
+}  
+.yupik {
+  margin: 0 !important;
+  position: absolute;
+  left: 0rem;
+  width: 15.6rem;
+  height: 5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 1;
+  border-bottom:1px solid#a0a1a2;
+  
+}
+  
+.yu-pik {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 29.7rem;
+    height: 3.5rem;
+    margin-left: 7rem;
+    color:#ffffff;
+    font-size: 36px;
+}
+
+.list-chat {
+  position: relative;
+  color:#ffffff;
+  align-items: center;
+}
+
+.list1 {
+    align-self: stretch;
+    border-radius: 13px;
+    background-color: #00c3a4;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-lg) var(--padding-13xl);
+    cursor: pointer;
    
-    }
-    .mainmainBItem {
-      position: absolute;
-      background: #1f1f1f;
-      top: 79px;
-      left: 0px;
-      
-     
-      
-    }
+    border: 1px solid #bfbfc0;
+    font-size: 27px;
+    margin-left:5%;
+    margin-right:5%;
+    height: 20%;
+    margin-top:5%;
+  }
+  
+.list2 {
+  align-self: stretch;
+    border-radius: 13px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-lg) var(--padding-13xl);
+    cursor: pointer;
+    border: 1px solid #bfbfc0;
+    font-size: 27px;
+    margin-left:5%;
+    margin-right:5%;
+    height: 20%;
     
-    .maincontent{
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      background: #1f1f1f;
-      box-sizing: border-box;
-      width: 342px;
-      height: 1080px;
-      border: 1px solid #bfbfc0;
-      border-right: hidden;
-      border-top: hidden;
+  }
 
-      
-    }
-    .content{
+  .list3 {
+    align-self: stretch;
+    border-radius: 13px;
+   
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-lg) var(--padding-13xl);
+    cursor: pointer;
+   
+    border: 1px solid #bfbfc0;
+    font-size: 27px;
+    margin-left:5%;
+    margin-right:5%;
+    height: 20%;
+    margin-top:5%;
+  }
+  .list4 {
+    align-self: stretch;
+    border-radius: 13px;
+   
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-lg) var(--padding-13xl);
+    cursor: pointer;
+   
+    border: 1px solid #bfbfc0;
+    font-size: 27px;
+    margin-left:5%;
+    margin-right:5%;
+    height: 20%;
+    margin-top:5%;
+  }
+  .list5 {
+    align-self: stretch;
+    border-radius: 13px;
+   
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-lg) var(--padding-13xl);
+    cursor: pointer;
+   
+    border: 1px solid #bfbfc0;
+    font-size: 27px;
+    margin-left:5%;
+    margin-right:5%;
+    height: 20%;
+    margin-top:5%;
+  }
+
+  .blackAndWhiteCollection11 {
       position: absolute;
-      top: 0px;
-      left: 0px;
-      box-sizing: border-box;
-      width: 340px;
-      height: 80px;
-      border: 1px solid #bfbfc0;
-      border-right: hidden;
-      border-top: hidden;
-      border-left: hidden;
-      
-    }
-    .mainmainBInner {
-      position: absolute;
-      top: 0px;
-      left: 342px;
-      background: #1f1f1f;
-      box-sizing: border-box;
-      width: 1571px;
-      height: 1080px;
-      border: 1px solid #bfbfc0;
-      border-right: 1px solid #1f1f1f;
-      border-top: 1px solid #1f1f1f;
-    }
-    .blackAndWhiteCollection11 {
-      position: absolute;
-      top:6px;
-      left: 60px;
-     
+      top:5%;
+      left: 10%;
       overflow: hidden;
-      
       cursor: pointer;
     }
-    .yUpik {
-      position: absolute;
-      top: 16px;
-      left: 150px;
-      font-size: 36px;
-      cursor: pointer;
-      
-      
-    }
-    .chatModel {
-      position: absolute;
-      top: 15px;
-      left: 81px;
-      cursor: pointer;
-      
-    }
-    .chatModelWrapper {
-      position: absolute;
-      top: 97px;
-      left: 15px;
-      border-radius: 13px;
-      background-color: #00c3a4;
-      border: 1px solid #bfbfc0;
-      box-sizing: border-box;
-      width: 314px;
-      height: 63px;
-      overflow: hidden;
-      cursor: pointer;
-      font-size: 27px;
-      
-    }
-    .chatModelWrapper:hover{
-      background-color: #00c3a4;
-    }
-    
-    .apiKey {
-      position: absolute;
-      cursor: pointer;
-      top: 15px;
-      left: 106.5px;
-     
-    }
-    .apiKeyWrapper {
-      position: absolute;
-      cursor: pointer;
-      top: 178px;
-      left: 15px;
-      border-radius: 13px;
-     
-      border: 1px solid #bfbfc0;
-      box-sizing: border-box;
-      width: 314px;
-      height: 63px;
-      overflow: hidden;
-      font-size: 27px;
-     
-    }
-    .apiKeyWrapper:hover{
-      background-color: #00c3a4;
-    }
+
     .rectangleDiv {
-      position: absolute;
-      top: 79px;
-      left: 345px;
+      
       background-color: #333539;
-      width: 1568px;
-      height: 1001px;
       border: 1px solid #bfbfc0;
       border-left: hidden;
+      border-top: hidden;
     }
-    .mainmainBChild1 {  
-      position: absolute;
-      top: 160px;
-      left: 418px;
+    .mainmainBChild1{
+      margin-left: 17rem;
+      margin-top:4rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 1413px;
-      height: 756px;
+      height: 40rem;
+      width: 75rem;
       
     }
-    .icon {
+    .icon{
       position: absolute;
-      top: 196px;
-      left: 1740px;
-      width: 50px;
-      height: 50px;
+      bottom:77%;
+      left:90%; 
       cursor: pointer;
+      overflow:hidden;
       
     }
     .chatModel1 {
-      position: absolute;
-      top: 289px;
-      left: 544px;
+      position: relative;
+      left:5rem;
+      top:4rem;
       font-size: 40px;
-     
+      color:#ffffff;
     }
+
     .mainmainBChild2 {
-      position: absolute;
-      top: 351px;
-      left: 544px;
+      left: 3rem;
+      top: 5rem;
+      position: relative;
       border-radius: 13px;
       background-color: #333539;
       border: 1px solid #24262e;
       box-sizing: border-box;
-      width: 1160px;
-      height: 378px;
-      
+      width: 68rem;
+      height: 30rem;
+     
     }
+
     .mainmainBChild3 {
-      position: absolute;
-      top: 383px;
-      left: 634px;
+      position: relative;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 315px;
-      height: 150px;
+      width: 20rem;
+      height: 10rem;
       cursor: pointer;
-      
+      top: 3rem;
+      left: 4rem;
     }
+
     .mainmainBChild4 {
-      position: absolute;
-      top: 384px;
-      left: 967px;
+      position: relative;
+      left: 25rem;
+      bottom:7rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 315px;
-      height: 150px;
+      width: 20rem;
+      height: 10rem;
       cursor: pointer;
       
     }
+
     .mainmainBChild5 {
-      position: absolute;
-      top: 384px;
-      left: 1300px;
+      position: relative;
+      left: 46rem;
+      bottom:17rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 315px;
-      height: 150px;
-      
+      width: 20rem;
+      height: 10rem;
+      cursor:pointer;
     }
+
     .mainmainBChild6 {
-      position: absolute;
-      top: 546px;
-      left: 634px;
+      position: relative;
+      left: 4rem;
+      bottom: 14rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 315px;
-      height: 150px;
+      width: 20rem;
+      height: 10rem;
      
     }
+
     .mainmainBChild7 {
-      position: absolute;
-      top: 546px;
-      left: 967px;
+      position: relative;
+      bottom: 24rem;
+      left: 25rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 315px;
-      height: 150px;
-     
+      width: 20rem;
+      height: 10rem;
     }
     .mainmainBChild8 {
-      position: absolute;
-      top: 546px;
-      left: 1300px;
+      position: relative;
+      bottom: 34rem;
+      left: 46rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
-      width: 315px;
-      height: 150px;
+      width: 20rem;
+      height: 10rem;
      
     }
+
     .securityAssistant {
-      position: absolute;
+      position: relative;
       cursor: pointer;
-      top: 405px;
-      left: 648px;
-      
+      font-size: 30px;
+      color:#ffffff;
+      left: 1rem;
+      top:1rem;
     }
+
     .p {
       position: absolute;
-      top:471px;
-      left:650px;
+      top:50%;
+      left:8%;
       cursor: pointer;
       display: inline-block;
-      width: 210px;
-      height: 100px;
-      
+      color:#77787f;
+      font-weight: 200;
     }
     .b {
       position: absolute;
@@ -363,31 +436,75 @@
     .privacyDetector {
       position: absolute;
       cursor: pointer;
-      top: 405px;
-      left: 981px;
-      
+      color:#ffffff;
+      font-size:30px;
+      left: 1rem;
+      top: 1rem;
     }
-
     .b1 {
       position: absolute;
-      top: 471px;
-      left: 982px;
+      top: 50%;
+      left: 8%;
       cursor: pointer;
       display: inline-block;
-      width: 192px;
-      height: 50px;
-     
-    }
-    .mainmainB {
-      position: fixed;
-      width: 100vw;
-      height: 100vh;
-      text-align: left;
-      font-size: 30px;
-      font-family: Inter;
-      background-color: #1f1f1f;
-      
+      color:#77787f;
+      font-weight: 200;
     }
 
     
-  </style>
+
+    .list2:hover{
+      background-color: #00c3a4;
+    }
+    .list3:hover{
+      background-color: #00c3a4;
+    }
+    .list4:hover{
+      background-color: #00c3a4;
+    }
+    .list5:hover{
+      background-color: #00c3a4;
+    }
+    .additional-content{
+      display:none;
+    }
+
+ @media (max-width: 768px) {
+  .rectangleDiv,
+  .mainmainBChild1,
+  .icon,
+  .chatModel1,
+  .mainmainBChild2,
+  .mainmainBChild3,
+  .mainmainBChild4,
+  .mainmainBChild5,
+  .mainmainBChild6,
+  .mainmainBChild7,
+  .mainmainBChild8 {
+    display: none;
+  }
+
+  .navbarcontent .frame-group {
+    display: none; /* 네비게이션 바의 일반 항목 숨기기 */
+  }
+  .yupik{
+    border-bottom: hidden;
+  }
+  .additional-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 300px;
+  }
+  /* 네비게이션 바 스타일 수정 */
+  .navbar {
+    width: 100%; /* 화면 전체 너비로 설정 */
+  }
+ 
+
+
+  /* 다른 스타일이 필요한 경우 추가 */
+}
+</style>
+
