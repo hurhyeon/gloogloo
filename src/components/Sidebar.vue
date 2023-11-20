@@ -12,11 +12,15 @@ function onDragStart(event, nodeType) {
     <div class="description">You can drag these nodes to the pane.</div>
 
     <div class="nodes">
-      <div class="node-input" :draggable="true" @dragstart="onDragStart($event, 'input')">Input Node</div>
+      <div class="node-input" :draggable="true" @dragstart="onDragStart($event, 'input')">Inputs Node</div>
 
       <div class="node-default" :draggable="true" @dragstart="onDragStart($event, 'default')">Default Node</div>
 
       <div class="node-output" :draggable="true" @dragstart="onDragStart($event, 'output')">Output Node</div>
+
+      <div class="node-combobox" :draggable="true" @dragstart="onDragStart($event, 'combobox')">Combobox Node</div>
+
+
     </div>
   </aside>
 </template>
@@ -41,26 +45,28 @@ function onDragStart(event, nodeType) {
 
 .nodes {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
 .node-input,
 .node-default,
-.node-output {
-  background-color: #333; /* Set background color of nodes */
-  color: #fff; /* Set text color of nodes to white */
+.node-output,
+.node-combobox {
+  background-color: #333; 
+  color: #fff; 
   padding: 8px;
   margin-bottom: 8px;
   cursor: pointer;
-  width: 100px; /* Set width of nodes */
+  width: 100px; 
   text-align: center;
   border-radius: 4px;
 }
 
 .node-input:hover,
 .node-default:hover,
-.node-output:hover {
-  background-color: #555; /* Set background color on hover */
+.node-output:hover,
+.node-combobox:hover {
+  background-color: #555;
 }
 </style>

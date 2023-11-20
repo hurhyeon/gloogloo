@@ -75,9 +75,9 @@ export default {
     return {
       userMessage: '',
       messages: [],
-      apiKey: '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',
+      apiKey: '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',
       apiEndpoint: 'https://api.openai.com/v1/chat/completions',
-      conversation: [], 
+      conversation: [],
       eventSource: null, 
     };
     

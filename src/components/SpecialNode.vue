@@ -1,4 +1,3 @@
-SpecialNode.vue
 <template>
     <div class="special-node">
       {{ node && node.label }}
