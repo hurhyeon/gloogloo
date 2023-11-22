@@ -6,7 +6,7 @@
           <div class="frame-group">
             <div class="yupik">
               <img class="blackAndWhiteCollection11" alt="" src="/black-and-white-collection-11.svg" @click="onMainClick"/>
-              <b class="yu-pik">Y-upik</b>
+              <b class="yu-pik" @click="onMainClick">Y-upik</b>
             </div>
           </div>
           <div class="list1">
@@ -55,8 +55,10 @@
         <b class="privacyDetector" @click = "onChainingClick">Chaining</b>
       <b class="b1" @click = "onChainingClick">임시 설명 임시 설명</b></div>
       
-      <div class="mainmainBChild6"> </div>
-      
+      <div class="mainmainBChild6" @click = "onSearchClick" > 
+        <b class="privacyDetector" @click = "onSearchClick">Search engine</b>
+      <b class="b1">임시 설명 임시 설명</b></div>
+
       <div class="mainmainBChild7"> </div>
       
       <div class="mainmainBChild8"> </div>
@@ -92,6 +94,9 @@
         },
         onChainingClick(){
           this.$router.push("/chain-ing")
+        },
+        onSearchClick(){
+          this.$router.push("/search-engine")
         }
       },
   });
@@ -170,6 +175,7 @@
     margin-left: 7rem;
     color:#ffffff;
     font-size: 36px;
+    cursor:pointer
 }
 
 .list-chat {
@@ -379,7 +385,7 @@
       box-sizing: border-box;
       width: 20rem;
       height: 10rem;
-     
+      cursor: pointer;
     }
 
     .mainmainBChild7 {

@@ -6,7 +6,7 @@
           <div class="frame-group">
             <div class="yupik">
               <img class="blackAndWhiteCollection11" alt="" src="/black-and-white-collection-11.svg" @click="onMainClick"/>
-              <b class="yu-pik">Y-upik</b>
+              <b class="yu-pik" @click="onMainClick">Y-upik</b>
             </div>
           </div>
           <div class="list1" @click="onMainClick">
@@ -278,6 +278,7 @@
     margin-left: 7rem;
     color:#ffffff;
     font-size: 36px;
+    cursor:pointer;
 }
 
 .list-chat {

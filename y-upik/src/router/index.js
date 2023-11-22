@@ -7,7 +7,7 @@ import SecurityAssistantW from "../pages/SecurityAssistantW.vue";
 import PrivacyDecetor from "../pages/PrivacyDecetor.vue";
 import ApiKey from "../pages/ApiKey.vue";
 import Chaining from "../pages/ChainIng.vue";
-
+import SearchEngine from "../pages/SearchEngine.vue"
 
 const routes = [
   {
@@ -34,6 +34,11 @@ const routes = [
     path: "/chain-ing",
     name: "ChainIng",
     component: Chaining,
+  },
+  {
+    path: "/search-engine",
+    name: "SearchEngine",
+    component: SearchEngine,
   }
 ];
 
