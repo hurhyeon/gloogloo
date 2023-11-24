@@ -75,26 +75,49 @@ export default {
     return {
       userMessage: '',
       messages: [],
-      apiKey: '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',
-      apiEndpoint: 'https://api.openai.com/v1/chat/completions',
+      apiKey: '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',
+      // apiEndpoint: 'https://api.openai.com/v1/chat/completions',
       conversation: [],
-      eventSource: null, 
+      eventSource: null,
+      question:'',
+      // category:'',
     };
-    
   },
+
   
   methods: {
-    
     onMainClick() {
-        this.$router.push("/");
-      },
-
-    addMessage(sender, text) {
-      this.messages.push({ sender, text });
+      this.$router.push("/");
     },
+
+
+    async fetchPromptFromAPI(question) {
+  try {
+    // 동적으로 값을 전달
+    const apiUrl = `http://118.36.189.70:8000/get_prompt/1?q=${encodeURIComponent(question)}`;
+    const response = await fetch(apiUrl,{mode:'cors'});
+
+      if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('받아온 데이터', data);
+    // API 응답을 필요에 따라 처리
+
+    return data;
+  } catch (error) {
+    console.error('API에서 프롬프트를 가져오는 동안 오류 발생:', error);
+    throw error;
+  }
+ },
+     addMessage(sender, text) {
+       this.messages.push({ sender, text });
+     },
 
     async fetchAIResponse(prompt) {
       this.conversation.push({ role: 'user', content: prompt });
+
       const requestOptions = {
         method: 'POST', 
         headers: {
@@ -109,69 +132,44 @@ export default {
 
       try {
         const response = await fetch(this.apiEndpoint, requestOptions);
+        if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
         const data = await response.json();
-        const aiResponse = data.choices[0].message.content;
-        
+        const aiResponse = data.choices && data.choices.length > 0 ? data.choices[0].message.content : 'No response from the API';
+
         
         this.conversation.push({ role: 'assistant', content: aiResponse });
         this.streamAIResponse(aiResponse);
+
+        console.log('API 응답:',data);
      
         return aiResponse;
       } catch (error) {
         console.error('OpenAI API 호출 중 오류 발생:', error);
+
+        
         return 'OpenAI API 호출 중 오류 발생';
       }
     },
-  
-      streamAIResponse(response) {
-        this.addMessage('bot', response);
-      },
 
+     streamAIResponse(response) {
+       this.addMessage('bot', response);
+     },
 
-      async sendMessage() {
-        const message = this.userMessage.trim();
-        if (message.length === 0) return;
+    async sendMessage() {
+      const message = this.userMessage.trim();
+      if (message.length === 0) return;
 
-        this.addMessage('user', message);
-        this.userMessage = '';
-        
-        // 연결
-        this.startSSE()
-        await this.fetchAIResponse(message);
-
+      this.addMessage('user', message);
+      this.userMessage = '';
       
-      // const aiResponse = await this.fetchAIResponse(message);
-      // this.addMessage('bot', aiResponse);
-      
+      await this.fetchPromptFromAPI(message);
+      await this.fetchPromptFromAPI("question")
+      await this.fetchAIResponse(message);
     },
-
-    //연결
-    async startSSE() {
-      this.eventSource = new EventSource('/streamFromOpenAI');
-
-      this.eventSource.onmessage = (event) => {
-        const char = event.data;
-        this.addMessage('bot', char);
-      };
-
-      this.eventSource.onerror = (error) => {
-        console.error('SSE 오류:', error);
-   
-        this.eventSource.close();
-      };
-    },
-  },
-  
-  //연결
-  mounted() {
-    this.startSSE();
-  },
-  //연결
-  beforeUnmount() {
-    if (this.eventSource) {
-      this.eventSource.close();
-    }
-  },
+  }
 }
 </script>
 
@@ -306,8 +304,6 @@ export default {
   background-color: #edededed;
   cursor: pointer;
 }
-
-
 
 .conversation{
   position: relative;
