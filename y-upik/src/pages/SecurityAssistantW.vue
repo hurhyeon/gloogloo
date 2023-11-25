@@ -77,15 +77,15 @@ export default {
     return {
       userMessage: '',
       messages: [],
-      apiKey: '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',
-      apiEndpoint: 'http://118.36.189.70:8000/get_prompt/1',
+      apiKey: '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',
+      apiEndpoint: 'https://api.openai.com/v1/chat/completions',
       conversation: [],
       aiResponse:'',
     };
   },
 
   
-  methods: {
+  methods: {  
     onMainClick() {
       this.$router.push("/");
     },
@@ -106,6 +106,9 @@ export default {
 
     const data = await response.json();
 
+    // API 응답을 OpenAI에 전달
+    await this.fetchAIResponse(data);
+
     return data;
   } catch (error) {
     if (error instanceof TypeError && error.message === 'Failed to fetch') {
@@ -115,14 +118,58 @@ export default {
     }
   }
 },
-     
-streamAIResponse(response) {
+
+
+    streamAIResponse(response) {
           console.log('AI 응답 처리:', response);
         
+          this.conversation.push({ role: 'bot', content: response })
         },
-    async fetchAIResponse(prompt) {
-      this.conversation.push({ role: 'user', content: prompt });
-},
+        
+
+        async fetchAIResponse(prompt) {
+        
+        this.conversation.push({ role: 'user', content: prompt });
+        this.conversation.push({ role:'system', content:"You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer or question is not question's format, just said you don't know . You should add the source of contents in metadata as a last of answer. Be sure to answer in Korean and use polite language."});
+
+      
+      
+      const requestOptions = {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.apiKey}`,
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo-16k",
+          messages: this.conversation,
+        }),
+      };
+
+      try {
+        const response = await fetch(this.apiEndpoint, requestOptions);
+        if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+        const data = await response.json();
+        console.log('API 응답 데이터:', data);
+        
+        const aiResponse = data.choices && data.choices.length > 0 ? data.choices[0].message.content : 'No response from the API';
+        
+        this.conversation.push({ role: 'assistant', content: aiResponse });
+        this.streamAIResponse(aiResponse);
+
+        console.log('API 응답:',data);
+     
+        return aiResponse;
+      } catch (error) {
+        console.error('OpenAI API 호출 중 오류 발생:', error);
+
+        
+        return 'OpenAI API 호출 중 오류 발생';
+      }
+    },
 
     async sendMessage() {
       const message = this.userMessage.trim();
