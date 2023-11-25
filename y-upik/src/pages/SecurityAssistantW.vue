@@ -51,15 +51,17 @@
       <input class="conversation" type="text" placeholder="검색어 입력">
       <img class="send-icon" src="/send.png" @click="sendButtonClick">
     </div> -->
-    <div class="container-box">
+    <div ref="messageContainer" class="container-box" >
           <div v-for="(message, index) in messages" :key="index" class="message" :class="{ 'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot' }">
         {{ message.text }}
+     
       </div>
     </div>
     
     <div class="search">
       <input class="conversation" v-model="userMessage" @keydown.enter="sendMessage" type="text" placeholder="메시지를 입력하세요..." />
       <!-- <img class="send-icon" src="/send.png" @click="sendMessage"> -->
+    
     </div>
    
     </div> 
@@ -76,11 +78,9 @@ export default {
       userMessage: '',
       messages: [],
       apiKey: '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',
-      // apiEndpoint: 'https://api.openai.com/v1/chat/completions',
+      apiEndpoint: 'http://118.36.189.70:8000/get_prompt/1',
       conversation: [],
-      eventSource: null,
-      question:'',
-      // category:'',
+      aiResponse:'',
     };
   },
 
@@ -90,11 +90,14 @@ export default {
       this.$router.push("/");
     },
 
-
+    addMessage(sender, text) {
+       this.messages.push({ sender, text });
+     },
+     
     async fetchPromptFromAPI(question) {
   try {
-    // 동적으로 값을 전달
     const apiUrl = `http://118.36.189.70:8000/get_prompt/1?q=${encodeURIComponent(question)}`;
+    console.log('API URL:', apiUrl);
     const response = await fetch(apiUrl,{mode:'cors'});
 
       if (!response.ok) {
@@ -102,75 +105,53 @@ export default {
     }
 
     const data = await response.json();
-    console.log('받아온 데이터', data);
-    // API 응답을 필요에 따라 처리
 
     return data;
   } catch (error) {
-    console.error('API에서 프롬프트를 가져오는 동안 오류 발생:', error);
-    throw error;
+    if (error instanceof TypeError && error.message === 'Failed to fetch') {
+      console.error('네트워크에 문제가 있습니다. 인터넷 연결을 확인하세요.');
+    } else {
+      console.error('API에서 프롬프트를 가져오는 동안 오류 발생:', error);
+    }
   }
- },
-     addMessage(sender, text) {
-       this.messages.push({ sender, text });
-     },
-
+},
+     
+streamAIResponse(response) {
+          console.log('AI 응답 처리:', response);
+        
+        },
     async fetchAIResponse(prompt) {
       this.conversation.push({ role: 'user', content: prompt });
-
-      const requestOptions = {
-        method: 'POST', 
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.apiKey}`,
-        },
-        body: JSON.stringify({
-          model: "gpt-3.5-turbo",
-          messages: this.conversation, 
-        }),
-      };
-
-      try {
-        const response = await fetch(this.apiEndpoint, requestOptions);
-        if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-        const data = await response.json();
-        const aiResponse = data.choices && data.choices.length > 0 ? data.choices[0].message.content : 'No response from the API';
-
-        
-        this.conversation.push({ role: 'assistant', content: aiResponse });
-        this.streamAIResponse(aiResponse);
-
-        console.log('API 응답:',data);
-     
-        return aiResponse;
-      } catch (error) {
-        console.error('OpenAI API 호출 중 오류 발생:', error);
-
-        
-        return 'OpenAI API 호출 중 오류 발생';
-      }
-    },
-
-     streamAIResponse(response) {
-       this.addMessage('bot', response);
-     },
+},
 
     async sendMessage() {
       const message = this.userMessage.trim();
       if (message.length === 0) return;
 
+      try{
       this.addMessage('user', message);
       this.userMessage = '';
       
-      await this.fetchPromptFromAPI(message);
-      await this.fetchPromptFromAPI("question")
-      await this.fetchAIResponse(message);
+     
+      const aiResponse = await this.fetchAIResponse(message);
+
+      const questionResponse = await this.fetchPromptFromAPI(message);
+  
+    
+     console.log('Question Response:', questionResponse);
+     
+     this.$nextTick(() => {
+  this.addMessage('bot', questionResponse);
+});
+
+      this.streamAIResponse(aiResponse);
+    } catch (error){
+      console.error('메시지 전송중 오류 발생',error);
+    }
     },
   }
-}
+  }
+
 </script>
 
 <style scoped>
