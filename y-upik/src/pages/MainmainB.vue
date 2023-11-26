@@ -57,7 +57,7 @@
       
       <div class="mainmainBChild6" @click = "onSearchClick" > 
         <b class="privacyDetector" @click = "onSearchClick">Search engine</b>
-      <b class="b1">임시 설명 임시 설명</b></div>
+      <b class="b1" @click = "onSearchClick">Search the content of web page for keyword and summarize using LLM model</b></div>
 
       <div class="mainmainBChild7"> </div>
       

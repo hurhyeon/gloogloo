@@ -35,15 +35,15 @@
     
     <div class ="mainspace">
       <h1>API 명세페이지</h1>
-      <p>이 문서는 Security Assistant API와 Privacy Decetor API를 사용한 구현 방법을 안내합니다.</p>
+      <p>이 문서는 Security Assistant, Search Summary Engine, Privacy Decetor에서 사용한 모듈의 API를 안내합니다.</p>
 
       <hr style="width: 70rem; margin: 20px 0; margin-left:300px ;">
 
       <h1>Security Assistant</h1>
 
-      <h1>요청</h1>
-
-      <h2>쿼리 파라미터</h2>
+      <h2>/get_prompt/{k}</h2>
+        <p> 클라이언트에서 LLM을 활용하기 위한 보안 자료 및 프롬프트 서비스 API</p>
+      <h3>Request 쿼리 파라미터</h3>
 
       <table>
 <thead>
@@ -54,63 +54,30 @@
 <th>필수</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>client_id</td>
+<tbody>
+  <tr>
+    <td>k</td>
+    <td><code>Integer</code></td>
+    <td>질의에 활용할 문서의 개수</td>
+    <td>O</td>
+    </tr>
+  <tr>
+<td>q</td>
 <td><code>String</code></td>
-<td>앱 REST API 키<br>[내 애플리케이션] &gt; [앱 키]에서 확인 가능</td>
+<td>프롬프트 생성을 위한 질문</td>
 <td>O</td>
 </tr>
 <tr>
-<td>redirect_uri</td>
+<td>category</td>
 <td><code>String</code></td>
-<td>인가 코드를 전달받을 서비스 서버의 URI<br>[내 애플리케이션] &gt; [카카오 로그인] &gt; [Redirect URI]에서 등록</td>
-<td>O</td>
-</tr>
-<tr>
-<td>response_type</td>
-<td><code>String</code></td>
-<td><code>code</code>로 고정</td>
-<td>O</td>
-</tr>
-<tr>
-<td>scope</td>
-<td><code>String</code></td>
-<td><a href="#request-code-additional-consent">추가 항목 동의 받기</a> 요청 시 사용<br>사용자에게 동의 요청할 동의항목 ID 목록<br>동의항목의 ID는 <a href="../kakaologin/common#user-info">사용자 정보</a> 또는 [내 애플리케이션] &gt; [카카오 로그인] &gt; [동의항목]에서 확인 가능<br>쉼표(,)로 구분해 여러 개 전달 가능<br><br><strong>주의</strong>: OpenID Connect를 사용하는 앱의 경우, <code>scope</code> 파라미터 값에 <code>openid</code>를 반드시 포함해야 함, 미포함 시 ID 토큰이 재발급되지 않음 (<a href="../kakaologin/common#additional-consent-scope">참고: scope 파라미터</a>)</td>
+<td>검색할 문서 리트리버 <br>사용 가능 리트리버 : CVE, CWE, OWASP, KISA_VUL, MITRE2<br>default : KISA_VUL</td>
 <td>X</td>
 </tr>
-<tr>
-<td>prompt</td>
-<td><code>String</code></td>
-<td>동의 화면 요청 시 추가 상호작용을 요청할 때 사용<br>쉼표(,)로 구분된 문자열 값 목록으로 전달<br><br>다음 값 사용 가능<br><code>login</code>: 기존 사용자 인증 여부와 상관없이 사용자에게 카카오계정 로그인 화면을 출력하여 다시 사용자 인증을 수행하고자 할 때 사용, 카카오톡 인앱 브라우저에서는 이 기능이 제공되지 않음<br><code>none</code>: 사용자에게 동의 화면과 같은 대화형 UI를 노출하지 않고 인가 코드 발급을 요청할 때 사용, 인가 코드 발급을 위해 사용자의 동작이 필요한 경우 에러 응답 전달<br><code>create</code>: 사용자가 카카오계정 신규 가입 후 로그인하도록 할 때 사용, <a href="https://accounts.kakao.com/weblogin/create_account" target="_blank">카카오계정 가입 페이지</a>로 이동 후, 카카오계정 가입 완료 후 동의 화면 출력<br><code>select_account</code>: <a href="#request-code-prompt-select-account">카카오계정 간편로그인</a>을 요청할 때 사용, 브라우저에 카카오계정 로그인 세션이 있을 경우 자동 로그인 또는 계정 선택 화면 출력<br><br><strong>참고</strong>: <a href="#additional-feature">추가 기능</a></td>
-<td>X</td>
-</tr>
-<tr>
-<td>login_hint</td>
-<td><code>String</code></td>
-<td><a href="#request-code-login-hint">로그인 힌트 주기</a> 요청 시 사용<br>카카오계정 로그인 페이지의 ID란에 자동 입력할 값<br><br><strong>비고</strong>: <a href="../kakaologin/common#intro-id-fill-in-process">로그인 힌트 주기 상세 동작 과정</a> 확인 권장<br><strong>참고</strong>: 카카오계정 로그인 시 이메일, 전화번호, 카카오메일 ID를 ID에 입력하여 로그인 가능</td>
-<td>X</td>
-</tr>
-<tr>
-<td>service_terms</td>
-<td><code>String</code></td>
-<td><a href="#request-code-terms">서비스 약관 선택해 동의 받기</a> 요청 시 사용<br>동의받을 서비스 약관 태그 목록<br>서비스 약관 태그는 [내 애플리케이션] &gt; [간편가입]에서 확인 가능<br>쉼표(,)로 구분된 문자열 값 목록으로 전달</td>
-<td>X</td>
-</tr>
-<tr>
-<td>state</td>
-<td><code>String</code></td>
-<td>카카오 로그인 과정 중 동일한 값을 유지하는 임의의 문자열(정해진 형식 없음)<br><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank">Cross-Site Request Forgery(CSRF)</a> 공격으로부터 카카오 로그인 요청을 보호하기 위해 사용<br>각 사용자의 로그인 요청에 대한 <code>state</code> 값은 고유해야 함<br>인가 코드 요청, 인가 코드 응답, 토큰 발급 요청의 <code>state</code> 값 일치 여부로 요청 및 응답 유효성 확인 가능</td>
-<td>X</td>
-</tr>
-<tr>
-<td>nonce</td>
-<td><code>String</code></td>
-<td><a href="../kakaologin/common#oidc">OpenID Connect</a>를 통해 ID 토큰을 함께 발급받을 경우, <a href="https://en.wikipedia.org/wiki/Replay_attack" target="_blank">ID 토큰 재생</a> 공격을 방지하기 위해 사용<br><a href="../kakaologin/common#oidc-id-token-verify">ID 토큰 유효성 검증</a> 시 대조할 임의의 문자열(정해진 형식 없음)</td>
-<td>X</td>
-</tr>
-</tbody></table>
-      <h1>응답</h1>
-      <p>인가 코드 받기 요청의 응답은 HTTP 302 리다이렉트되어, redirect_uri에 GET 요청으로 전달됩니다. 해당 요청은 아래와 같은 쿼리 파라미터를 포함합니다.</p>
+</tbody>
+</table>
+
+      <h2>Response</h2>
+      <p>API응답은 String 형태로 제공되며, 다음과 같은 정보들을 포함합니다.</p>
       <h2>쿼리 파라미터</h2>
       <table>
 <thead>
@@ -121,52 +88,295 @@
 <th>필수</th>
 </tr>
 </thead>
-<tbody><tr>
-<td>code</td>
+<tbody>
+  <tr>
+    <td>prompt</td>
+    <td><code>String</code></td>
+    <td>API에 활용할 프롬프트</td>
+    <td>O</td>
+    </tr>
+  <tr>
+    <td>Question</td>
+    <td><code>String</code></td>
+    <td>사용자가 질의한 질문</td>
+    <td>O</td>
+    </tr>
+  <tr>
+    <td>Context</td>
+    <td><code>String</code></td>
+    <td>리트리버를 통해 검색된 문서의 내용 </td>
+    <td>O</td>
+  </tr>
+</tbody>
+</table>
+<h1>예제</h1>
+<h2>요청</h2>
+<code class="language-http hljs">http://yupik.com/get_prompt/1?q=sql%20injection&amp;category=OWASP
+</code>
+
+<h2>응답: 프롬프트 생성 및 문서 추출</h2>
+<pre>
+<code class="language-http hljs">
+  <span class="hljs-attribute">Prompt</span>: You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer or question is not question's format, just said you don't know . You should add the source of contents in metadata as a last of answer. Be sure to answer in Korean and use polite language.
+  <span class="hljs-attribute">Question</span>: sql injection
+  <span class="hljs-attribute">Context</span>: {'ids': [['e092b39d-7674-11ee-b992-c87f54adf3e8']], 'distances': [[0.3309985399246216]], 'metadatas': [[{'ID': 'OWASP_A03', 'category': 'OWASP', 'source': 'data_source/owasp_top_10/OWASP_A03.txt'}]], 'embeddings': None, 'documents': [[<span class="hljs-attribute">document contents</span>]]}\n    Answer:\n    "
+
+</code>
+</pre>
+
+      <hr style="width: 70rem; margin: 20px 0; margin-left:300px ;">
+
+      <h1>Security Assistant</h1>
+
+      <h2>/docs_search/{k}</h2>
+        <p> 클라이언트에서 LLM을 활용하기 위한 보안 자료 검색 서비스 API</p>
+      <h3>Request 쿼리 파라미터</h3>
+
+      <table>
+<thead>
+<tr>
+<th>이름</th>
+<th>타입</th>
+<th>설명</th>
+<th>필수</th>
+</tr>
+</thead>
+<tbody>
+  <tr>
+    <td>k</td>
+    <td><code>Integer</code></td>
+    <td>질의에 활용할 문서의 개수</td>
+    <td>O</td>
+    </tr>
+  <tr>
+<td>q</td>
 <td><code>String</code></td>
-<td><a href="#request-token">토큰 받기</a> 요청에 필요한 인가 코드</td>
-<td>X</td>
+<td>문서 검색을 위한 질문</td>
+<td>O</td>
 </tr>
 <tr>
-<td>error</td>
+<td>category</td>
 <td><code>String</code></td>
-<td>인증 실패 시 반환되는 에러 코드</td>
+<td>검색할 문서 리트리버 <br>사용 가능 리트리버 : CVE, CWE, OWASP, KISA_VUL, MITRE2<br>default : KISA_VUL</td>
 <td>X</td>
 </tr>
+</tbody>
+</table>
+      <h2>Response</h2>
+      <p>응답은 JSON 형태로 제공되며, 다음과 같은 정보들을 포함합니다.</p>
+      <h2>쿼리 파라미터</h2>
+      <table>
+<thead>
 <tr>
-<td>error_description</td>
-<td><code>String</code></td>
-<td>인증 실패 시 반환되는 에러 메시지</td>
-<td>X</td>
+<th>이름</th>
+<th>타입</th>
+<th>설명</th>
+<th>필수</th>
 </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>ids</td>
+    <td><code>List of String</code></td>
+    <td>검색된 문서의 인덱스</td>
+    <td>O</td>
+    </tr>
+  <tr>
+    <td>distances</td>
+    <td><code>List of String</code></td>
+    <td>검색된 문서와 질의의 거리</td>
+    <td>O</td>
+    </tr>
+  <tr>
+    <td>metadatas</td>
+    <td><code>List of JSON</code></td>
+    <td>검색된 문서의 메타데이터</td>
+    <td>O</td>
+  </tr>
+  <tr>
+    <td>embeddings</td>
+    <td><code>String</code></td>
+    <td>임베딩 방식 </td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td>documents</td>
+    <td><code>List of String</code></td>
+    <td>리트리버를 통해 검색된 문서의 내용 </td>
+    <td>O</td>
+  </tr>
+</tbody>
+</table>
+<h1>예제</h1>
+<h2>요청</h2>
+<code class="language-http hljs">http://yupik.com/docs_search/1?q=sql%20injection&amp;category=OWASP
+</code>
+
+<h2>응답: 프롬프트 생성 및 문서 추출</h2>
+<pre>
+<code class="language-http hljs">
+  {
+    <span class="hljs-attribute">"ids"</span>: [
+      [
+        "e092b39d-7674-11ee-b992-c87f54adf3e8"
+      ]
+    ],
+    <span class="hljs-attribute">"distances"</span>: [
+      [
+        0.3309985399246216
+      ]
+    ],
+    <span class="hljs-attribute">"metadatas"</span>: [
+      [
+        {
+          "ID": "OWASP_A03",
+          "category": "OWASP",
+          "source": "data_source/owasp_top_10/OWASP_A03.txt"
+        }
+      ]
+    ],
+    <span class="hljs-attribute">"embeddings"</span>: null,
+    <span class="hljs-attribute">"documents"</span>: [
+      [
+        "검색된 문서의 내용"
+      ]
+    ]
+  }
+</code>
+</pre>
+
+
+<hr style="width: 70rem; margin: 20px 0; margin-left:300px ;">
+
+<h1>Security Assistant</h1>
+
+<h2>/seatriever_selector</h2>
+  <p> 질의에 대해 적절한 문서 리트리버를 찾아주는 API</p>
+<h3>Request 쿼리 파라미터</h3>
+<table>
+<thead>
 <tr>
-<td>state</td>
+<th>이름</th>
+<th>타입</th>
+<th>설명</th>
+<th>필수</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q</td>
 <td><code>String</code></td>
-<td>요청 시 전달한 <code>state</code> 값과 동일한 값</td>
-<td>X</td>
+<td>문서 검색을 위한 질문</td>
+<td>O</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Response</h2>
+<p>응답은 String 형태로 제공되며, 다음과 같은 정보들을 포함합니다.</p>
+<h2>쿼리 파라미터</h2>
+
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>타입</th>
+<th>설명</th>
+<th>필수</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retriever filter</td>
+<td><code>String</code></td>
+<td>문서를 검색할 리트리버 필터</td>
+<td>O</td>
 </tr>
 </tbody>
 </table>
 <h1>예제</h1>
 <h2>요청</h2>
-<code class="language-http hljs">https://kauth.kakao.com/oauth/authorize?response_type=code&amp;client_id=<span class="hljs-variable">${REST_API_KEY}</span>&amp;redirect_uri=<span class="hljs-variable">${REDIRECT_URI}</span>
+<code class="language-http hljs">http://yupik.com/retriever_selector?q=sql%20injection
 </code>
 
-<h2>응답: 사용자가 [동의하고 계속하기] 선택, 로그인 진행</h2>
+<h2>응답: 문서 검색 리트리버 필터</h2>
 <pre>
-<code class="language-http hljs"><span class="hljs-meta">HTTP/1.1</span> <span class="hljs-number">302</span> Found
-<span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>0
-<span class="hljs-attribute">Location</span><span class="hljs-punctuation">: </span>${REDIRECT_URI}?code=${AUTHORIZE_CODE}
+<code class="language-http hljs">"KISA_VUL"
 </code>
 </pre>
 
-<h2>응답:로그인 취소</h2>
+
+<hr style="width: 70rem; margin: 20px 0; margin-left:300px ;">
+
+<h1>Search Summary Engine</h1>
+
+<h2>/search_summary/{n}</h2>
+  <p> 웹에서 키워드를 검색하고 해당 페이지의 내용을 프롬프트와 함께 제공하는 API</p>
+<h3>Request 쿼리 파라미터</h3>
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>타입</th>
+<th>설명</th>
+<th>필수</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n</td>
+<td><code>Integer</code></td>
+<td>검색할 웹 페이지의 수</td>
+<td>O</td>
+</tr>
+<tr>
+  <td>q</td>
+  <td><code>String</code></td>
+  <td>검색을 위한 키워드</td>
+  <td>O</td>
+  </tr>
+</tbody>
+</table>
+
+<h2>Response</h2>
+<p>응답은 String 형태로 제공되며, 다음과 같은 정보들을 포함합니다.</p>
+<h2>쿼리 파라미터</h2>
+
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>타입</th>
+<th>설명</th>
+<th>필수</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retriever filter</td>
+<td><code>String</code></td>
+<td>문서를 검색할 리트리버 필터</td>
+<td>O</td>
+</tr>
+</tbody>
+</table>
+<h1>예제</h1>
+<h2>요청</h2>
+<code class="language-http hljs">http://yupik.com/search_summary/1?q=KISIA
+</code>
+
+<h2>응답: 문서 검색 리트리버 필터</h2>
 <pre>
-<code class="language-http hljs"><span class="hljs-meta">HTTP/1.1</span><span class="hljs-number">302</span> Found
-<span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>0
-<span class="hljs-attribute">Location</span><span class="hljs-punctuation">: </span>${REDIRECT_URI}?error=access_denied&amp;error_description=User%20denied%20access
+<code class="language-http hljs">
+  [
+    {
+      <span class="hljs-attribute">'url'</span>: 'https://www.kisia.or.kr/', 
+      <span class="hljs-attribute">'content'</span>: '웹 컨텐츠'
+    }
+  ]
 </code>
 </pre>
+
 <div class="end"> .</div>
     </div>
 

@@ -11,6 +11,7 @@
     "@mdi/font": "5.9.55",
     "@quasar/extras": "^1.16.7",
     "@vue-flow/core": "^1.26.0",
+    "axios": "^1.6.2",
     "core-js": "^3.8.3",
     "quasar": "^2.12.7",
     "resize-observer-polyfill": "^1.5.1",
