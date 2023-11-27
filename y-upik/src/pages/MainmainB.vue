@@ -38,26 +38,37 @@
     <div class="rectangleDiv"> </div> 
       
     <div class="mainmainBChild1">
-        <img class="icon" alt="" src="/1.svg" />
+      
       
         <b class="chatModel1">Model</b>
       <div class="mainmainBChild2" >
         
-      <div class="mainmainBChild3" @click ="onSecurityClick">
-        <b class="securityAssistant" @click="onSecurityClick">Security Assistant</b>
-      <b class="p" @click="onSecurityClick">The assistant-chatbot for information security industries.</b></div>
-      
-      <div class="mainmainBChild4" @click ="onPrivircyClick">
-        <b class="privacyDetector" @click = "onPrivircyClick">Privacy Detector</b>
-      <b class="b1" @click = "onPrivircyClick">Masking the private information contained in the file such as hwp or docx.</b></div>
-      
-      <div class="mainmainBChild5" @click ="onChainingClick">
+      <div class="mainmainBChild3">
+        <b class="securityAssistant" >Security Assistant</b>
+      <b class="p">The assistant-chatbot for information security industries.</b>
+      <div class="jyp1"> <img class="icon1" alt="" src="/gochain1.png" vaule="securitychain" /> <img class="icon2"  @click="onSecurityClick" alt="" src="/gorun1.png" /> </div>
+    </div>
+
+
+
+      <div class="mainmainBChild4">
+        <b class="privacyDetector" >Privacy Detector</b>
+      <b class="b1">Masking the private information contained in the file such as hwp or docx.</b>
+      <div class="jyp2"> <img class="icon3" alt="" src="/gochain2.png" vaule="decetorchain" /> <img class="icon4"  @click ="onPrivircyClick" alt="" src="/gorun2.png" /> </div>
+    </div>
+   
+
+      <div class="mainmainBChild5"  >
+        <b class="privacyDetector">Search engine</b>
+      <b class="b1" >Search the content of web page for keyword and summarize using LLM model</b>
+        <div class="jyp3"><img class="icon5" alt="" src="/gochain3.png" vaule="searchchai" /> <img class="icon6" @click = "onSearchClick" alt="" src="/gorun3.png" /></div>
+      </div>
+
+
+      <div class="mainmainBChild6" @click ="onChainingClick">
         <b class="privacyDetector" @click = "onChainingClick">Chaining</b>
       <b class="b1" @click = "onChainingClick">임시 설명 임시 설명</b></div>
       
-      <div class="mainmainBChild6" @click = "onSearchClick" > 
-        <b class="privacyDetector" @click = "onSearchClick">Search engine</b>
-      <b class="b1" @click = "onSearchClick">Search the content of web page for keyword and summarize using LLM model</b></div>
 
       <div class="mainmainBChild7"> </div>
       
@@ -76,7 +87,8 @@
     name: "MainmainB",
     data(){
       return{
-        mode:'dark'
+        mode:'dark',
+        darkMode:true
       }
     },
     methods: {
@@ -105,12 +117,16 @@
 
 
 <style scoped>    
-.home {
-
-  height: 100vh; /* 화면 전체 높이에 맞추기 */
-  background-color:#000;
-
-}
+  .home {
+    height: 100vh;
+    background-color:#000;
+  }
+  .body{
+    margin:0;
+  } 
+  body{
+    margin:0;
+  }
   .navbar {
     position: fixed;
     top: 0;
@@ -119,10 +135,7 @@
     height: 100%;
     background-color: #1f1f1f;
     border-right: 1px solid #a0a1a2;
-  
 }
-
-
 
 .frame-parent {
   position: relative;
@@ -225,7 +238,6 @@
   .list3 {
     align-self: stretch;
     border-radius: 13px;
-   
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -233,7 +245,6 @@
     justify-content: center;
     padding: var(--padding-lg) var(--padding-13xl);
     cursor: pointer;
-   
     border: 1px solid #bfbfc0;
     font-size: 27px;
     margin-left:5%;
@@ -241,10 +252,10 @@
     height: 20%;
     margin-top:5%;
   }
+
   .list4 {
     align-self: stretch;
     border-radius: 13px;
-   
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -252,7 +263,6 @@
     justify-content: center;
     padding: var(--padding-lg) var(--padding-13xl);
     cursor: pointer;
-   
     border: 1px solid #bfbfc0;
     font-size: 27px;
     margin-left:5%;
@@ -260,10 +270,10 @@
     height: 20%;
     margin-top:5%;
   }
+
   .list5 {
     align-self: stretch;
     border-radius: 13px;
-   
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -271,7 +281,6 @@
     justify-content: center;
     padding: var(--padding-lg) var(--padding-13xl);
     cursor: pointer;
-   
     border: 1px solid #bfbfc0;
     font-size: 27px;
     margin-left:5%;
@@ -289,7 +298,6 @@
     }
 
     .rectangleDiv {
-      
       background-color: #333539;
       border: 1px solid #bfbfc0;
       border-left: hidden;
@@ -304,16 +312,8 @@
       box-sizing: border-box;
       height: 40rem;
       width: 75rem;
-      
     }
-    .icon{
-      position: absolute;
-      bottom:77%;
-      left:90%; 
-      cursor: pointer;
-      overflow:hidden;
-      
-    }
+
     .chatModel1 {
       position: relative;
       left:5rem;
@@ -342,79 +342,75 @@
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
       width: 20rem;
-      height: 10rem;
-      cursor: pointer;
-      top: 3rem;
+      height: 200px;
+      top: 30px;
       left: 4rem;
     }
 
     .mainmainBChild4 {
       position: relative;
-      left: 25rem;
-      bottom:7rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
       width: 20rem;
-      height: 10rem;
-      cursor: pointer;
-      
+      height: 200px;
+      bottom: 170px;
+      left: 400px;
     }
+
 
     .mainmainBChild5 {
       position: relative;
       left: 46rem;
-      bottom:17rem;
+      bottom:370px;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
       width: 20rem;
-      height: 10rem;
-      cursor:pointer;
+      height: 200px;
     }
 
     .mainmainBChild6 {
       position: relative;
       left: 4rem;
-      bottom: 14rem;
+      bottom: 350px;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
       width: 20rem;
-      height: 10rem;
-      cursor: pointer;
+      height: 200px;
+
     }
 
     .mainmainBChild7 {
       position: relative;
-      bottom: 24rem;
+      bottom: 550px;
       left: 25rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
       width: 20rem;
-      height: 10rem;
+      height: 200px;
     }
     .mainmainBChild8 {
       position: relative;
-      bottom: 34rem;
+      bottom: 750px;
       left: 46rem;
       border-radius: 13px;
       background-color: #1f1f1f;
       border: 1px solid #bfbfc0;
       box-sizing: border-box;
       width: 20rem;
-      height: 10rem;
+      height: 200px;
      
     }
 
     .securityAssistant {
       position: relative;
-      cursor: pointer;
       font-size: 30px;
       color:#ffffff;
       left: 1rem;
@@ -423,9 +419,8 @@
 
     .p {
       position: absolute;
-      top:50%;
+      top:70px;
       left:8%;
-      cursor: pointer;
       display: inline-block;
       color:#77787f;
       font-weight: 200;
@@ -433,15 +428,31 @@
     .b {
       position: absolute;
       top: 471px;
-      cursor: pointer;
       display: inline-block;
       width: 120px;
       height: 55px;
       
     }
+
+    .jyp1{
+      position: relative;
+      top:100px;
+      left:25px;
+    }
+
+    .jyp2{
+      position: relative;
+      top:140px;
+      left:25px;
+    }
+
+    .jyp3{
+      position: relative;
+      top:140px;
+      left:25px;
+    }
     .privacyDetector {
       position: absolute;
-      cursor: pointer;
       color:#ffffff;
       font-size:30px;
       left: 1rem;
@@ -449,16 +460,34 @@
     }
     .b1 {
       position: absolute;
-      top: 50%;
+      top: 70px;
       left: 8%;
-      cursor: pointer;
       display: inline-block;
       color:#77787f;
       font-weight: 200;
     }
 
-    
-
+    .icon1{
+      cursor:pointer;
+    }
+    .icon2{
+      margin-left:5px;
+      cursor: pointer;
+    }
+    .icon3{
+      cursor:pointer;
+    }
+    .icon4{
+      margin-left:5px;
+      cursor: pointer;
+    }
+    .icon5{
+      cursor:pointer;
+    }
+    .icon6{
+      margin-left:5px;
+      cursor: pointer;
+    }
     .list2:hover{
       background-color: #00c3a4;
     }

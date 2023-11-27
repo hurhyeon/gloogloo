@@ -1,12 +1,9 @@
 <template>
   <div>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-  </head>
+ 
  
   
-  <div class="home">
+  <div class="home2">
 
     
     <img class="robot-icon" alt="" src="/robot.png" />
@@ -38,7 +35,7 @@ export default {
     return {
       userMessage: '',
       messages: [],
-      apiKey: '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',
+      apiKey: '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',
       apiEndpoint: 'https://api.openai.com/v1/chat/completions',
       conversation: [],
       aiResponse:'',
@@ -102,7 +99,7 @@ extractContent(str) {
       // console.error('extract content error', error)
     }
 
-    // console.log('Extracted Content:', extractedContents);
+    
     return extractedContents;
 
 }, 
@@ -221,13 +218,14 @@ handleFinalResult(result) {
 
 <style scoped>
 
-.home {
+.home2 {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
 }
+
 
 .container-box {
   position:relative;
@@ -245,7 +243,7 @@ handleFinalResult(result) {
 
 .message-container {
   display: flex;
-  justify-content: flex-end; /* Align user messages to the right */
+  justify-content: flex-end; 
   margin-bottom: 10px;
 }
 
@@ -262,8 +260,8 @@ handleFinalResult(result) {
   
 }
 .search-search:focus {
-  outline: none; /* 포커스 효과 제거 */
-  border-color: #0075ff; /* 클릭 시 색깔 변화 제거 */
+  outline: none; 
+  border-color: #0075ff; 
 }
 .send-icon{
  cursor: pointer;

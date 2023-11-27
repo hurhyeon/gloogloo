@@ -8,7 +8,7 @@
     
     <div class="main">
       
-    <div class="web-name">Y-UPIK</div>
+    <div class="web-name">Search</div>
     <div class="input-group">
       <div class="search-bar">
   <label for="search-input" class="search-icon">
@@ -39,7 +39,7 @@ export default {
     return {
       
       messages: [],
-      apiKey: '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',
+      apiKey: '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',
       apiEndpoint: 'https://api.openai.com/v1/chat/completions',
       conversation: [],
       aiResponse:'',
@@ -258,6 +258,8 @@ handleFinalResult(result) {
   bottom: 10px; 
   left: 10px;   
   cursor: pointer;
+  width: 70px;
+  height: 70px;
 }
 
 .search-icon22{

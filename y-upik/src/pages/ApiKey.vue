@@ -9,14 +9,14 @@
               <b class="yu-pik" @click="onMainClick">Y-upik</b>
             </div>
           </div>
-          <div class="list1" @click="onMainClick">
+          <div class="list5" @click="onMainClick">
             <b class="list-chat" @click="onMainClick">Model</b>
           </div>
-          <div class="list2">
+          <div class="list6">
             <b class="list-chat">API</b>
           </div>
         </div>
-
+   
 
         <div class="additional-content">
           <div class="list3" @click="onSecurityClick">
@@ -43,7 +43,8 @@
 
       <h2>/get_prompt/{k}</h2>
         <p> 클라이언트에서 LLM을 활용하기 위한 보안 자료 및 프롬프트 서비스 API</p>
-      <h3>Request 쿼리 파라미터</h3>
+      <h2>Request</h2>
+      <h2>쿼리 파라미터 </h2>
 
       <table>
 <thead>
@@ -417,10 +418,11 @@
 </script>
 
 
-<style scoped>    
-.home {
+<style>
 
-  height: 100vh; /* 화면 전체 높이에 맞추기 */
+.home {
+  margin:0px;
+  height: 100vh;  /* 화면 전체 높이에 맞추기 */
   background-color:#333539;
 
 }
@@ -436,6 +438,9 @@
 }
 
 
+body{
+  margin:0;
+}
 
 .frame-parent {
   position: relative;
@@ -497,10 +502,9 @@
   align-items: center;
 }
 
-.list1 {
+.list5 {
     align-self: stretch;
     border-radius: 13px;
-   
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -508,7 +512,6 @@
     justify-content: center;
     padding: var(--padding-lg) var(--padding-13xl);
     cursor: pointer;
-   
     border: 1px solid #bfbfc0;
     font-size: 27px;
     margin-left:5%;
@@ -517,7 +520,7 @@
     margin-top:5%;
   }
   
-.list2 {
+.list6 {
   align-self: stretch;
     border-radius: 13px;
     overflow: hidden;
@@ -538,7 +541,6 @@
   .list3 {
     align-self: stretch;
     border-radius: 13px;
-   
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -546,7 +548,6 @@
     justify-content: center;
     padding: var(--padding-lg) var(--padding-13xl);
     cursor: pointer;
-   
     border: 1px solid #bfbfc0;
     font-size: 27px;
     margin-left:5%;
@@ -557,7 +558,6 @@
   .list4 {
     align-self: stretch;
     border-radius: 13px;
-   
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -565,7 +565,6 @@
     justify-content: center;
     padding: var(--padding-lg) var(--padding-13xl);
     cursor: pointer;
-   
     border: 1px solid #bfbfc0;
     font-size: 27px;
     margin-left:5%;
@@ -580,8 +579,6 @@
       overflow: hidden;
       cursor: pointer;
     }
-
-  
     .blackspace{
       height: 5rem;
       border-bottom: solid 1px #a0a1a2;
@@ -589,7 +586,6 @@
     }
 
     .mainspace{
-      
       margin-top: 50px;
       background-color: #333539;
     }
@@ -605,6 +601,7 @@
   margin-right: 110px;
    
   }
+
   code {
   padding: 8px;
   background-color: #2d2d2d;
@@ -621,12 +618,12 @@ pre code.hljs {
   border-radius: 8px;
 }
 
-/* 코드 블록의 가독성을 향상하기 위해 추가한 스타일 */
+
 .hljs {
   white-space: pre-wrap;
 }
 
-/* 코드 블록에 라인 넘버를 추가하기 위한 스타일 */
+
 
 
 .language-http{
@@ -660,6 +657,9 @@ pre code.hljs {
     .list4:hover{
       background-color: #00c3a4;
     }
+    .list5:hover{
+      background-color: #00c3a4;
+    }
     .additional-content{
       display:none;
     }
@@ -681,7 +681,6 @@ pre code.hljs {
     border-collapse: collapse;
     border-spacing: 0;
     border-left: 1px solid #e5e5e5;
-    
     font-size: 14px;
     line-height: 24px;
     letter-spacing: 0px;
@@ -747,14 +746,14 @@ pre code.hljs {
     justify-content: flex-start;
     height: 300px;
   }
-  /* 네비게이션 바 스타일 수정 */
+ 
   .navbar {
-    width: 100%; /* 화면 전체 너비로 설정 */
+    width: 100%; 
   }
  
 
 
-  /* 다른 스타일이 필요한 경우 추가 */
+ 
  }
 </style>
 
