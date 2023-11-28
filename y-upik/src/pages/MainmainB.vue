@@ -58,16 +58,18 @@
     </div>
    
 
-      <div class="mainmainBChild5"  >
+      <div class="mainmainBChild5">
         <b class="privacyDetector">Search engine</b>
       <b class="b1" >Search the content of web page for keyword and summarize using LLM model</b>
         <div class="jyp3"><img class="icon5" alt="" src="/gochain3.png" vaule="searchchai" /> <img class="icon6" @click = "onSearchClick" alt="" src="/gorun3.png" /></div>
       </div>
 
 
-      <div class="mainmainBChild6" @click ="onChainingClick">
-        <b class="privacyDetector" @click = "onChainingClick">Chaining</b>
-      <b class="b1" @click = "onChainingClick">임시 설명 임시 설명</b></div>
+      <div class="mainmainBChild6">
+        <b class="privacyDetector">Chaining</b>
+      <b class="b1">임시 설명 임시 설명</b>
+      <div class="jyp4"><img class="icon7" alt="" src="/gochain4.png" vaule="searchchai" /> <img class="icon8" @click = "onChainingClick" alt="" src="/gorun4.png" /></div>
+    </div>
       
 
       <div class="mainmainBChild7"> </div>
@@ -99,8 +101,8 @@
         this.$router.push("/");
       },
         onPrivircyClick() {
-          this.$router.push("/privacy-decetor");
-        },
+          this.$router.push("http://106.253.161.167:8080");
+        },   
         onApiClick(){
           this.$router.push("/api-key");
         },
@@ -208,7 +210,6 @@
     justify-content: center;
     padding: var(--padding-lg) var(--padding-13xl);
     cursor: pointer;
-   
     border: 1px solid #bfbfc0;
     font-size: 27px;
     margin-left:5%;
@@ -451,6 +452,12 @@
       top:140px;
       left:25px;
     }
+
+    .jyp4{
+      position: relative;
+      top:140px;
+      left:25px;
+    }
     .privacyDetector {
       position: absolute;
       color:#ffffff;
@@ -485,6 +492,13 @@
       cursor:pointer;
     }
     .icon6{
+      margin-left:5px;
+      cursor: pointer;
+    }
+    .icon7{
+      cursor:pointer;
+    }
+    .icon8{
       margin-left:5px;
       cursor: pointer;
     }
