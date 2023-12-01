@@ -39,7 +39,7 @@ export default {
     return {
       
       messages: [],
-      apiKey: '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',
+      apiKey: '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',
       apiEndpoint: 'https://api.openai.com/v1/chat/completions',
       conversation: [],
       aiResponse:'',
